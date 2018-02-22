@@ -1,14 +1,65 @@
 <div class="container">
   <mat-card>
-    <p>
-      <img class="logo" src="assets/ngx-rocket-logo.png" alt="angular logo"/>
-    </p>
     <mat-card-content>
-      <mat-card-title translate>Hello world !</mat-card-title>
-      <mat-card-subtitle>
-        <app-loader [isLoading]="isLoading" size="1.5"></app-loader>
-        <q [hidden]="isLoading">{{quote}}</q>
-      </mat-card-subtitle>
+      <div class="col s6">
+        <div style="padding: 35px;" align="center" class="card">
+            <div class="row">
+            <div class="left card-title">
+                <b>My health</b>
+            </div>
+            </div>
+            <div class="row">
+            <a href="#!">
+                <div style="padding: 30px;" class="grey lighten-3 col s5 waves-effect">
+                <i class="indigo-text text-lighten-1 large material-icons">store</i>
+                <span class="indigo-text text-lighten-1"><h5>Visits</h5></span>
+                </div>
+            </a>
+
+            <div class="col s1">&nbsp;</div>
+            <div class="col s1">&nbsp;</div>
+
+            <a href="#!">
+                <div style="padding: 30px;" class="grey lighten-3 col s5 waves-effect">
+                <i class="indigo-text text-lighten-1 large material-icons">assignment</i>
+                <span class="indigo-text text-lighten-1"><h5>Findings</h5></span>
+                </div>
+            </a>
+            </div>
+        </div>
+    </div>
+
+      <div class="col s6">
+        <div style="padding: 35px;" align="center" class="card">
+          <div class="row">
+            <div class="left card-title">
+              <b>My account</b>
+            </div>
+          </div>
+
+          <div class="row">
+            <a href="#!">
+              <div style="padding: 30px;" class="grey lighten-3 col s5 waves-effect">
+                <i class="indigo-text text-lighten-1 large material-icons">person</i>
+                <span class="indigo-text text-lighten-1"><h5>My data</h5></span>
+              </div>
+            </a>
+            <div class="col s1">&nbsp;</div>
+            <div class="col s1">&nbsp;</div>
+
+            <a href="#!">
+              <div style="padding: 30px;" class="grey lighten-3 col s5 waves-effect">
+                <i class="indigo-text text-lighten-1 large material-icons">people</i>
+                <span class="indigo-text text-lighten-1"><h5>Doctors</h5></span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
     </mat-card-content>
   </mat-card>
+    <div id="copyright">
+      <img id="tieto" src="https://www.tieto.com/sites/default/files/thumbnails/image/tieto_logo_blue_3.png" class="responsive-img" />
+      <p>© 2018 Tieto Winter Academy ALL RIGHTS RESERVED</p>
+    </div>  
 </div>
