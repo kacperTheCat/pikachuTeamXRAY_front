@@ -1,0 +1,18 @@
+{
+  "generator-ngx-rocket": {
+    "version": "3.2.1",
+    "props": {
+      "appName": "xRay",
+      "target": [
+        "web"
+      ],
+      "pwa": true,
+      "ui": "material",
+      "layout": "side-menu",
+      "auth": true,
+      "projectName": "x-ray",
+      "packageManager": "npm",
+      "mobile": []
+    }
+  }
+}

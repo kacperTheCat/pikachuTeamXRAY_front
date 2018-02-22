@@ -1,0 +1,7 @@
+{
+  "target": ["web"],
+  "pwa": true,
+  "ui": "ionic",
+  "auth": true,
+  "lazy": false
+}

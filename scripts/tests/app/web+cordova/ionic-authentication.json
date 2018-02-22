@@ -1,0 +1,8 @@
+{
+  "target": ["web", "cordova"],
+  "pwa": false,
+  "mobile": ["ios", "android"],
+  "ui": "ionic",
+  "auth": true,
+  "lazy": false
+}

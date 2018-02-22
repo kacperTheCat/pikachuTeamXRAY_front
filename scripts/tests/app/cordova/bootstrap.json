@@ -1,0 +1,7 @@
+{
+  "target": ["cordova"],
+  "mobile": ["ios", "android"],
+  "ui": "bootstrap",
+  "auth": false,
+  "lazy": false
+}
