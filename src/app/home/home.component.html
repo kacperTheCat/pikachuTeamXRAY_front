@@ -1,14 +1,27 @@
 <div class="container">
-  <mat-card>
-    <p>
-      <img class="logo" src="assets/ngx-rocket-logo.png" alt="angular logo"/>
-    </p>
+  <mat-card class="content">
     <mat-card-content>
-      <mat-card-title translate>Hello world !</mat-card-title>
-      <mat-card-subtitle>
-        <app-loader [isLoading]="isLoading" size="1.5"></app-loader>
-        <q [hidden]="isLoading">{{quote}}</q>
-      </mat-card-subtitle>
+      <h1>Hello {{ username }}
+        <br> and welcome in xRay app
+      </h1>
+      <!-- xRay app będzie zamienione na zazwę dostarczaną z backu -->
+      <h2 class="sub-head">ip: 12.435.646
+
+        <br> {{ version }}
+      </h2>
+      <!-- też będzie podstawiane -->
     </mat-card-content>
+
+    <mat-card-content>
+      <mat-card-title translate></mat-card-title>
+      <mat-card-subtitle>
+        <p>check Your connection </p>
+      </mat-card-subtitle>
+      <button mat-fab color="warn" class="btn btn-connect" (click)="getStatus()">connect</button>
+      <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
+
+    </mat-card-content>
+
   </mat-card>
+  <mat-card-footer class="footer">copyrights pikachuTeam - winter academy tieto</mat-card-footer>
 </div>

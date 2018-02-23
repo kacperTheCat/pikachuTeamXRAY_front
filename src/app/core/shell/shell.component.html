@@ -33,12 +33,17 @@
       <nav>
         <mat-list>
           <mat-divider></mat-divider>
-          <a mat-list-item routerLink="/home" routerLinkActive="active" (click)="sidenav.close()">
+          <a mat-list-item routerLink="/home" routerLinkActive="active" >
             <span translate>Home</span>
           </a>
           <mat-divider></mat-divider>
-          <a mat-list-item routerLink="/about" routerLinkActive="active" (click)="sidenav.close()">
+          <a mat-list-item routerLink="/about" routerLinkActive="active" >
             <span translate>About</span>
+          </a>
+          <mat-divider></mat-divider>
+          <mat-divider></mat-divider>
+          <a mat-list-item routerLink="/xray" routerLinkActive="active" >
+            <span translate>xRay panel</span>
           </a>
           <mat-divider></mat-divider>
         </mat-list>
@@ -54,4 +59,6 @@
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
+
 </div>
+

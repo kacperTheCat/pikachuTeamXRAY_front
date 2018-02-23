@@ -12,9 +12,11 @@ import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { HomeModule } from './home/home.module';
 import { AboutModule } from './about/about.module';
+import { XrayModule } from './xRay/xray.module';
 import { LoginModule } from './login/login.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { XrayComponent } from './xray/xray.component';
 
 @NgModule({
   imports: [
@@ -30,6 +32,7 @@ import { AppRoutingModule } from './app-routing.module';
     HomeModule,
     AboutModule,
     LoginModule,
+    XrayModule,
     AppRoutingModule
   ],
   declarations: [AppComponent],
