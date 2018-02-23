@@ -1,0 +1,26 @@
+/*
+ * Global application theme.
+ * Framework overrides and customization goes here.
+ */
+
+<% if (props.ui === 'material') { -%>
+// stylelint-disable-next-line selector-max-universal
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  height: 100%;
+}
+<% } else if (props.ui === 'raw') { -%>
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+<% } -%>
