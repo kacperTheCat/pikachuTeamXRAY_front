@@ -17,6 +17,9 @@ import { LoginModule } from './login/login.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { XrayComponent } from './xray/xray.component';
+import { GetData } from '@app/xRay/get-data.service';
+
+
 
 @NgModule({
   imports: [
@@ -36,7 +39,7 @@ import { XrayComponent } from './xray/xray.component';
     AppRoutingModule
   ],
   declarations: [AppComponent],
-  providers: [
+  providers: [ GetData
   ],
   bootstrap: [AppComponent]
 })

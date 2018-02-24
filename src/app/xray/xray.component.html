@@ -5,13 +5,13 @@
           <mat-card-header>
             <!-- tutaj jakie informacje -->
           </mat-card-header>
-          <img mat-card-image src="https://loremflickr.com/320/240" alt="Photo of a random cat">
+          <img mat-card-image [src]='comingImage'  alt="Photo of a random cat">
           <mat-card-content>
 
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button color="primary">preview</button>
-            <button mat-button color="warn">capture</button>
+            <button mat-button color="primary" (click)="getData()">preview</button>
+            <button mat-button color="warn" (click)="captureImage()">capture</button>
           </mat-card-actions>
 
   </mat-card>
