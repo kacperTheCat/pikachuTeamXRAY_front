@@ -13,6 +13,7 @@ import { GetData } from './get-data.service';
 
 
 
+
 @NgModule({
   imports: [
     CommonModule,
