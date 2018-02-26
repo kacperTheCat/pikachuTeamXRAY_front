@@ -20,13 +20,14 @@ export class XrayComponent implements OnInit {
   ngOnInit() {}
 
   getDataOnClick() {
-  this.getData.getData()
-    .subscribe((img) => {
-      this.comingImage = img.url;
-    });
+    this.comingImage = 'https://loremflickr.com/320/242';
+
   }
 
   captureImage() {
-    this.comingImage = 'https://loremflickr.com/320/242'; // zdjęcie będzie podmieniane
+    this.getData.getData()
+    .subscribe((img) => {
+      this.comingImage = img.url;
+  });
   }
 }

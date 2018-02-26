@@ -16,7 +16,7 @@ export class GetData {
 
   getData() {
   return this.http
-      .get(`https://jsonplaceholder.typicode.com/photos/1`); // trzeba podmienić na nasze dane
+      .get(`http://localhost:3000/profiles/1`); // trzeba podmienić na nasze dane
   }
 
   // getData() {
