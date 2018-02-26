@@ -16,7 +16,16 @@
     </mat-card-actions>
   </mat-card-content>
     <mat-card-actions class="row-wrap">
-      <mat-slider color="warn" min="1" max="100" step="1" value="50">radiation</mat-slider>
+      <mat-slider color="warn" min="0" max="3" step="1" value="1" vertical="vertical" tick-interval="tickInterval">radiation</mat-slider>
+      <mat-slider color="primary" min="0" max="3" step="1" value="2" vertical="vertical" tick-interval="tickInterval">radiation</mat-slider>
+      <mat-slider color="accent" min="0" max="3" step="1" value="3" vertical="vertical" tick-interval="tickInterval">radiation</mat-slider>
+      <mat-slide-toggle
+      class="example-margin"
+      color="warn"
+
+      >
+      Extra xRay
+  </mat-slide-toggle>
     </mat-card-actions>
   </mat-card>
 </div>

@@ -12,7 +12,10 @@
   flex-direction: column;
 }
 .mat-card-image {
-
-max-height: 500px;
-max-width: 500px;
+  max-height: 500px;
+  max-width: 500px;
+}
+.row-wrap {
+  display: flex;
+  align-items: center;
 }
