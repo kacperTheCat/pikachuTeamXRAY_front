@@ -8,7 +8,7 @@ import { map, catchError } from 'rxjs/operators';
 
 
 const datas = 'https://jsonplaceholder.typicode.com/photos/1';
-
+// http://localhost:3000/profiles/1
 
 @Injectable()
 export class GetData {
@@ -18,6 +18,12 @@ export class GetData {
 
   getData() {
   return this.http
-      .get(`http://10.28.68.119/api/camera`); // trzeba podmienić na nasze dane
+      .get(this.newMethod());
   }
+
+  private newMethod(): string {
+    return `http://10.28.68.119/api/camera`;
+  }
+
+
 }

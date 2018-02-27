@@ -1,27 +1,32 @@
 <div class="container">
   <mat-card class="content">
     <mat-card-content>
-      <h1>Hello {{ username }}
+      <h1 [hidden]="isLoading" *ngIf="isLoading">Hello {{ username }}
         <br> and welcome in {{ deviceName }} app
       </h1>
       <!-- xRay app będzie zamienione na zazwę dostarczaną z backu -->
-      <h2 class="sub-head">{{ ipAdress }}
+      <h2 class="sub-head" [hidden]="isLoading">{{ ipAdress }}
 
-        <br> {{ version }}
+        <br [hidden]="isLoading"> {{ version }}
       </h2>
       <!-- też będzie podstawiane -->
     </mat-card-content>
 
-    <mat-card-content>
-      <mat-card-title translate></mat-card-title>
-      <mat-card-subtitle>
-        <p>check Your connection </p>
-      </mat-card-subtitle>
-      <button mat-fab color="warn" class="btn btn-connect" (click)="getStatus()">connect</button>
-      <mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
-
+    <mat-card-content *ngIf="!visible">
+      <mat-progress-spinner color="warn" mode="determinate" value="100" size="4">
+      </mat-progress-spinner>
+      <h2>Not connected</h2>
     </mat-card-content>
-
+    <mat-card-content class="contener--bottom">
+      <mat-card-subtitle *ngIf="visible">
+        <app-loader [isLoading]="isLoading" size="4" color="warn">
+        </app-loader>
+        <h2 [hidden]="!isLoading">connecting...</h2>
+        <h2 [hidden]="isLoading"> Your are connected</h2>
+      </mat-card-subtitle>
+    </mat-card-content>
   </mat-card>
-  <mat-card-footer class="footer"><p>© 2018 Tieto Winter Academy ALL RIGHTS RESERVED</p></mat-card-footer>
+  <mat-card-footer class="footer">
+    <p>© 2018 Tieto Winter Academy ALL RIGHTS RESERVED</p>
+  </mat-card-footer>
 </div>

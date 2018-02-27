@@ -10,8 +10,8 @@
   justify-content: space-around;
 }
 #tieto{
-  margin-top: 5%; 
-  width:10%; 
+  margin-top: 5%;
+  width:10%;
   height:10%
 }
 
@@ -42,4 +42,7 @@ margin-bottom: 1.3rem;
   top: 90%;
   right: 4%;
   font-size: 0.7rem;
+}
+.contener--bottom{
+  padding-bottom: 10rem; //maybe it shoud be changed, need to test wit server connection
 }

@@ -15,27 +15,27 @@ import { environment } from '@env/environment';
 })
 export class HomeComponent implements OnInit {
 
-  quote: string;
-  isLoading: boolean;
-  colors: string = `warn`;
-  version: number;
-  deviceName: string;
-  ipAdress: string;
-
+  quote: String;
+  isLoading: Boolean;
+  version: Number;
+  deviceName: String;
+  ipAdress: String;
+  username = 'Kacper';
+  visible = true;
   constructor(private quoteService: QuoteService) { }
 
   ngOnInit() {
-    this.quoteService.getConnectionDetails().subscribe(( datas ) => {
+    this.isLoading = true;
+    this.quoteService.getConnectionDetails().subscribe((datas) => {
       this.version = `v.${datas.version}`;
-      this.deviceName =`${datas.deviceName}`;
+      this.deviceName = `${datas.deviceName}`;
       this.ipAdress = `ip address: ${datas.ipAddress}`;
-    });
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 2000);
+    },
+      err => this.visible = !this.visible;
+    );
   }
-  // get username(): string | null {
-  //   const credentials = this.authenticationService.credentials;
-  //   return credentials ? credentials.username : null;
-  // }
-  getStatus() {
-    this.colors = `primary`;
-  }
+
 }
