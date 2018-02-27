@@ -27,7 +27,7 @@ export class XrayComponent implements OnInit {
   captureImage() {
     this.getData.getData()
     .subscribe((img) => {
-      this.comingImage = `data:image/jpeg;base64,${img.Base64}`;
+      this.comingImage = `data:image/jpeg;base64,${img.base64}`;
   });
   }
 }
