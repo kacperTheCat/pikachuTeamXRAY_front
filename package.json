@@ -30,6 +30,7 @@
     "@angular/router": "^5.2.0",
     "@angular/service-worker": "^5.2.0",
     "@ngx-translate/core": "^9.0.1",
+    "@types/source-map": "^0.5.7",
     "base64-image-loader": "^1.2.1",
     "base64-img": "^1.0.4",
     "core-js": "^2.5.2",

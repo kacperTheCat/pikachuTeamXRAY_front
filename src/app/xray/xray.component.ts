@@ -1,3 +1,4 @@
+import {url} from '@angular-devkit/schematics';
 import { Component, OnInit } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { GetData } from './get-data.service';
@@ -15,19 +16,18 @@ export class XrayComponent implements OnInit {
   constructor(private getData: GetData) { }
 
   comingImage: String = 'https://loremflickr.com/320/240';
-  // val = `https://jsonplaceholder.typicode.com/photos/1`;
+
 
   ngOnInit() {}
 
   getDataOnClick() {
     this.comingImage = 'https://loremflickr.com/320/242';
-
   }
 
   captureImage() {
     this.getData.getData()
     .subscribe((img) => {
-      this.comingImage = img.url;
+      this.comingImage = `data:image/jpeg;base64,${img.Base64}`;
   });
   }
 }
