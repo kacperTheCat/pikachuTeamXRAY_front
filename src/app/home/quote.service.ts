@@ -8,10 +8,11 @@ import { map, catchError } from 'rxjs/operators';
 //   quote: (c: RandomQuoteContext) => `/jokes/random?category=${c.category}`
 // };
 
-// export interface RandomQuoteContext {
-//   // The quote's category: 'nerdy', 'explicit'...
-//   category: string;
-// }
+export interface DeviceInfo {
+  version: string;
+  deviceName: string;
+  ipAddress: string;
+}
 
 @Injectable()
 export class QuoteService {

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 
-import { QuoteService } from './quote.service';
+import { QuoteService, DeviceInfo } from './quote.service';
 // import { AuthenticationService } from '@app/core';
 import { MatIconModule } from '@angular/material/icon';
 
 import { environment } from '@env/environment';
+
 
 
 @Component({
@@ -15,18 +16,18 @@ import { environment } from '@env/environment';
 })
 export class HomeComponent implements OnInit {
 
-  quote: String;
+
   isLoading: Boolean;
-  version: Number;
-  deviceName: String;
-  ipAdress: String;
+  version = '';
+  deviceName = '';
+  ipAdress = '';
   username = 'Kacper';
   visible = true;
   constructor(private quoteService: QuoteService) { }
 
   ngOnInit() {
     this.isLoading = true;
-    this.quoteService.getConnectionDetails().subscribe((datas) => {
+    this.quoteService.getConnectionDetails().subscribe((datas: DeviceInfo) => {
       this.version = `v.${datas.version}`;
       this.deviceName = `${datas.deviceName}`;
       this.ipAdress = `ip address: ${datas.ipAddress}`;
@@ -34,7 +35,9 @@ export class HomeComponent implements OnInit {
         this.isLoading = false;
       }, 2000);
     },
-      err => this.visible = !this.visible;
+      (err) => {
+        this.visible = !this.visible;
+      }
     );
   }
 

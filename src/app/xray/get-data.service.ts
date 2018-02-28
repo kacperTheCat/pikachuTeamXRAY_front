@@ -7,6 +7,10 @@ import { map, catchError } from 'rxjs/operators';
 
 
 
+export interface Image {
+  base64: string;
+}
+
 const datas = 'https://jsonplaceholder.typicode.com/photos/1';
 // http://localhost:3000/profiles/1
 
