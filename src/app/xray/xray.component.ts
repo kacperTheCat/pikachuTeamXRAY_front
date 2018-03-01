@@ -37,4 +37,27 @@ export class XrayComponent implements OnInit {
       this.comingImage = `data:image/jpeg;base64,${img.base64}`; //need to add error handling
   });
   }
+
+  getParameters(){
+    let sliderOneElement = document.getElementById("sliderOne");
+    let sliderOneValue = sliderOneElement.getAttribute("aria-valuenow");
+    
+    let sliderTwoElement = document.getElementById("sliderTwo");
+    let slidetTwoValue = sliderTwoElement.getAttribute("aria-valuenow");
+    
+    let checkboxOneElement = document.getElementById("checkboxOne-input");
+    let checkboxOneValue = checkboxOneElement.getAttribute("aria-checked");
+   
+    let inputOneElement = document.getElementById("inputOne");
+    let inputOneText = inputOneElement.value;
+
+    var obj = new Object();
+    obj.paramOne = sliderOneValue;
+    obj.paramTwo = slidetTwoValue;
+    obj.paramThree = checkboxOneValue;
+    obj.paramFour = inputOneText;
+    var jsonParameters = JSON.stringify(obj);
+    console.log(jsonParameters);
+
+  };
 }

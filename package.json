@@ -40,7 +40,7 @@
     "zone.js": "^0.8.18"
   },
   "devDependencies": {
-    "@angular/cli": "1.7.0",
+    "@angular/cli": "^1.7.0",
     "@angular/compiler-cli": "^5.2.6",
     "@angular/language-service": "^5.2.6",
     "@biesbjerg/ngx-translate-extract": "^2.3.1",
