@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 // import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import {  HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Subscriber } from 'rxjs/Subscriber';
 import { map, catchError } from 'rxjs/operators';
 
@@ -20,14 +20,22 @@ export class GetData {
   constructor(private http: HttpClient) { }
 
 
+
   getData() {
-  return this.http
+    return this.http
       .get(this.newMethod());
   }
+
+  // stopData() {
+  //   return this.http
+  //     .get(this.stopMethod());
+  // }
 
   private newMethod(): string {
     return `http://10.28.68.119/api/camera`;
   }
-
+  // private stopMethod(): any {
+  //   return false;
+  // }
 
 }
