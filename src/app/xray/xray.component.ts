@@ -26,26 +26,18 @@ export class XrayComponent implements OnInit {
 
   titleBtn = 'preview';
   titleCptBtn: any = 'capture';
-  flag = false;
   error: any;
   disableBtn = true;
-
-  // sub = Observable.interval(1000);
-inter2:any;
+  inter2: any;
 
   ngOnInit() { }
 
   getDataOnClick() {
-
     if (this.titleBtn === 'preview') {
       this.inter2 = setInterval(() => {
         this.getImage();
       }, 1000);
-
       this.titleBtn = 'stop prewiev';
-      // if (this.titleBtn !== 'stop prewiev') {
-      //   clearInterval(this.inter2);
-      // }
     } else {
       this.titleBtn = 'preview';
       clearInterval(this.inter2);
@@ -54,31 +46,24 @@ inter2:any;
   }
 
   getImage() {
-    // setInterval(() => {
-    // }, 1000);
     this.getData.getData()
       .subscribe(
         (img: Image) => {
           this.comingImage = `data:image/jpeg;base64,${img.base64}`;
         },
-        (error: string) => { // temporary any type
+        (error: string) => {
           this.error = error;
           console.log('server err');
         });
   }
 
   captureImage() {
-    this.getData.getData()
-      .subscribe((img: Image) => {
-        this.comingImage = `data:image/jpeg;base64,${img.base64}`; //need to add error handling
-      },
-        (err) => {
-          console.log('error');
-        });
-        clearInterval(this.inter2);
-        this.titleBtn = 'preview';
-
+    this.getImage();
+    clearInterval(this.inter2);
+    this.titleBtn = 'preview';
+    // it shoud hide preview btn?
   }
+
   hideBtn() {
     this.disableBtn = false;
     this.titleCptBtn = 10;
@@ -88,7 +73,6 @@ inter2:any;
         clearInterval(inter);
       }
     }, 1000);
-
     setTimeout(() => {
       this.disableBtn = true;
       this.titleCptBtn = 'capture';

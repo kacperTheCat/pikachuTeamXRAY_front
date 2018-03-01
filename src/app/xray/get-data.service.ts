@@ -26,16 +26,9 @@ export class GetData {
       .get(this.newMethod());
   }
 
-  // stopData() {
-  //   return this.http
-  //     .get(this.stopMethod());
-  // }
-
   private newMethod(): string {
     return `http://10.28.68.119/api/camera`;
   }
-  // private stopMethod(): any {
-  //   return false;
-  // }
+
 
 }
