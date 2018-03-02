@@ -8,7 +8,8 @@ import { XrayRoutingModule } from './xray-routing.module';
 import { XrayComponent } from './xray.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { GetData } from './get-data.service';
+// import { GetData } from './get-data.service';
+import { GetDataService } from '../global/get-data.service';
 
 
 
@@ -28,7 +29,7 @@ import { GetData } from './get-data.service';
     XrayComponent
   ],
   providers: [
-    GetData
+     GetDataService
   ]
 })
 export class XrayModule {}

@@ -1,12 +1,14 @@
 import { url } from '@angular-devkit/schematics';
 import { Component, OnInit } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { GetData, Image } from './get-data.service';
+// import { GetData, Image } from './get-data.service';
 import { Observable } from 'rxjs/Observable';
 import { finalize } from 'rxjs/operators';
 import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 import { Title } from '@angular/platform-browser';
 import 'rxjs/add/observable/interval'; // wird
+import { GetDataService, Image } from '../global/get-data.service';
+import { imgAddress } from '../global/address';
 
 
 
@@ -19,7 +21,8 @@ import 'rxjs/add/observable/interval'; // wird
 export class XrayComponent implements OnInit {
 
   datas: string;
-  constructor(private getData: GetData) { }
+
+  constructor( private getData: GetDataService) { }
   previewOn = ``;
 
   comingImage: String = 'https://loremflickr.com/320/240';
@@ -45,7 +48,7 @@ export class XrayComponent implements OnInit {
   }
 
   getImage() {
-    this.getData.getData()
+    this.getData.getData(imgAddress)
       .subscribe(
         (img: Image) => {
           this.comingImage = `data:image/jpeg;base64,${img.base64}`;

@@ -8,7 +8,8 @@ import { SharedModule } from '@app/shared';
 import { MaterialModule } from '@app/material.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { GetConnectionDetails } from './getConnectionDetails.service';
+import { GetDataService } from '../global/get-data.service';
+
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import { GetConnectionDetails } from './getConnectionDetails.service';
     HomeComponent
   ],
   providers: [
-    GetConnectionDetails
+     GetDataService
   ]
 })
 export class HomeModule { }
