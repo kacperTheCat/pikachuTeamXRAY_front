@@ -1,7 +1,7 @@
 <div class="container">
   <mat-card class="content">
     <mat-card-content>
-      <h1 [hidden]="isLoading" *ngIf="isLoading">Hello {{ username }}
+      <h1 [hidden]="isLoading">Hello {{ username }}
         <br> and welcome in {{ deviceName }} app
       </h1>
       <!-- xRay app będzie zamienione na zazwę dostarczaną z backu -->
@@ -9,6 +9,9 @@
 
         <br [hidden]="isLoading"> {{ version }}
       </h2>
+      <p>
+        <img class="logo" src="assets/pikachu.png" alt="angular logo"/>
+      </p>
       <!-- też będzie podstawiane -->
     </mat-card-content>
 

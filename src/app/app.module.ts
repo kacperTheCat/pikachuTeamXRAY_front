@@ -17,7 +17,7 @@ import { LoginModule } from './login/login.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { XrayComponent } from './xray/xray.component';
-import { GetData } from '@app/xRay/get-data.service';
+// import { GetData } from '@app/xRay/get-data.service';
 
 
 
@@ -39,7 +39,7 @@ import { GetData } from '@app/xRay/get-data.service';
     AppRoutingModule
   ],
   declarations: [AppComponent],
-  providers: [ GetData
+  providers: [
   ],
   bootstrap: [AppComponent]
 })

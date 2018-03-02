@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
-
-import { QuoteService, DeviceInfo } from './quote.service';
-// import { AuthenticationService } from '@app/core';
 import { MatIconModule } from '@angular/material/icon';
-
 import { environment } from '@env/environment';
-
+import { GetDataService, DeviceInfo } from '../global/get-data.service';
+import { machineInfo } from '../global/address';
 
 
 @Component({
@@ -23,11 +20,11 @@ export class HomeComponent implements OnInit {
   ipAdress = '';
   username = 'Kacper';
   visible = true;
-  constructor(private quoteService: QuoteService) { }
+  constructor(private getData: GetDataService) { }
 
   ngOnInit() {
     this.isLoading = true;
-    this.quoteService.getConnectionDetails().subscribe((datas: DeviceInfo) => {
+    this.getData.getData(machineInfo).subscribe((datas: DeviceInfo) => {
       this.version = `v.${datas.version}`;
       this.deviceName = `${datas.deviceName}`;
       this.ipAdress = `ip address: ${datas.ipAddress}`;
