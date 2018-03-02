@@ -41,7 +41,6 @@ export class XrayComponent implements OnInit {
     } else {
       this.titleBtn = 'preview';
       clearInterval(this.inter2);
-      console.log('kupa');
     }
   }
 
@@ -53,7 +52,7 @@ export class XrayComponent implements OnInit {
         },
         (error: string) => {
           this.error = error;
-          console.log('server err');
+          console.log('server err'); // need to full error handle
         });
   }
 

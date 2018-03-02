@@ -39,7 +39,7 @@ import { GetData } from '@app/xRay/get-data.service';
     AppRoutingModule
   ],
   declarations: [AppComponent],
-  providers: [ GetData
+  providers: [
   ],
   bootstrap: [AppComponent]
 })

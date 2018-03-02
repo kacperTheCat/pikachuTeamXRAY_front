@@ -15,7 +15,7 @@ export interface DeviceInfo {
 }
 
 @Injectable()
-export class QuoteService {
+export class GetConnectionDetails {
 
   constructor(private http: HttpClient) { }
 

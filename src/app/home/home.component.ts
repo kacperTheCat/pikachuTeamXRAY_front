@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 
-import { QuoteService, DeviceInfo } from './quote.service';
+import { GetConnectionDetails, DeviceInfo } from './getConnectionDetails.service';
 // import { AuthenticationService } from '@app/core';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   ipAdress = '';
   username = 'Kacper';
   visible = true;
-  constructor(private quoteService: QuoteService) { }
+  constructor(private quoteService: GetConnectionDetails) { }
 
   ngOnInit() {
     this.isLoading = true;
