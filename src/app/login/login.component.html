@@ -37,7 +37,7 @@
           </mat-form-field>
           <mat-slide-toggle color="primary" formControlName="remember" translate>Remember me</mat-slide-toggle>
           <br/>
-          <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid || isLoading">
+          <button class="loginButton" mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid || isLoading">
             <app-loader class="inline-loader" [isLoading]="isLoading"></app-loader>
             <span translate>Login</span>
           </button>
@@ -45,5 +45,7 @@
       </form>
     </mat-card>
   </div>
+  <mat-card-footer class="footer">	&copy; pikachuTeam - winter academy tieto</mat-card-footer>
 </div>
+
 

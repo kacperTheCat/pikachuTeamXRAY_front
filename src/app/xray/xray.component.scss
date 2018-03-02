@@ -1,21 +1,28 @@
+@import "src/theme/theme-variables";
+
 .container {
   margin: 1rem;
+
 }
 .mat-card-actions {
   display: flex;
-  justify-content: center
+  justify-content: center;
 }
 .mat-card {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
+  }
 .mat-card-image {
-  max-height: 500px;
-  max-width: 500px;
+max-height: 500px;
+max-width: 500px;
 }
-.row-wrap {
-  display: flex;
-  align-items: center;
+.footer{
+  color: mat-color($app-text);
+  text-align: center;
+  margin: 4% 0 4% 0;
+  right: 4%;
+  font-size: 0.7rem;
+  background-color: mat-color($app-primary);
 }

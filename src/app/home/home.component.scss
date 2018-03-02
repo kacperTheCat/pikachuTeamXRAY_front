@@ -1,3 +1,5 @@
+@import "src/theme/theme-variables";
+
 .container {
   text-align: center;
   padding: 1em;
@@ -8,6 +10,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  
 }
 #tieto{
   margin-top: 5%;
@@ -30,19 +33,29 @@ margin-bottom: 1.3rem;
 
 .mat-card {
   min-height: 75vh;
+  
 }
 .mat-card-content{
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 }
 .footer{
-  position: fixed;
+
   text-align: center;
   top: 90%;
   right: 4%;
   font-size: 0.7rem;
+  background-color: mat-color($app-primary);
+  color: mat-color($app-text);
 }
 .contener--bottom{
   padding-bottom: 10rem; //maybe it shoud be changed, need to test wit server connection
+}
+h1 {
+  color: black;
+}
+.mat-sidenav-content {
+  background-color: mat-color($app-primary);
 }

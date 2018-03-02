@@ -1,13 +1,21 @@
+@import "src/theme/theme-variables";
 :host {
   display: flex;
   flex: 1;
+  
 }
 #tieto{ 
   width:30%; 
+  
 }
 .mat-sidenav {
   min-width: 270px;
   max-width: 28%;
+  background-color: mat-color($app-primary);
+  color: mat-color($app-text);
+}
+.mat-sidenav-content {
+  background-color: mat-color($app-primary);
 }
 
 .has-border {
@@ -16,11 +24,13 @@
 
 .mat-list {
   padding-top: 0;
+  background-color: mat-color($app-primary);
 }
 
 .mat-list-item {
   text-decoration: none;
-
+  color: mat-color($app-text);
+  background-color: mat-color($app-primary);
   &:hover {
     background: rgba(0, 0, 0, 0.05);
   }
@@ -28,4 +38,20 @@
 
 .menu-button {
   margin-right: 1rem;
+}
+body {
+background-color: mat-color($app-primary);
+}
+.appName {
+  color: mat-color($app-text);
+}
+.login {
+  color: mat-color($app-primary);
+  background-color: white;  
+}
+.loginIcon {
+  color: mat-color($app-text);
+}
+.title {
+  color: mat-color($app-text);
 }

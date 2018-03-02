@@ -12,6 +12,7 @@
 
 .version {
   margin: 0;
+  color: mat-color($app-text);
 }
 
 .login-container,
@@ -21,4 +22,20 @@
 
 .login-error {
   color: mat-color($app-warn);
+}
+h1 {
+  color: mat-color($app-text);
+}
+.mat-typography {
+  background-color: mat-color($app-primary);
+
+}
+.mat-card {
+  background-color: mat-color($app-secondary);
+}
+.mat-card-footer {
+  color: mat-color($app-text);
+}
+.mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+  background-color: mat-color($app-accent);
 }
