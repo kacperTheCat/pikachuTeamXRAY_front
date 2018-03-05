@@ -1,7 +1,6 @@
 import { url } from '@angular-devkit/schematics';
 import { Component, OnInit } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-// import { GetData, Image } from './get-data.service';
 import { Observable } from 'rxjs/Observable';
 import { finalize } from 'rxjs/operators';
 import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
@@ -49,7 +48,7 @@ export class XrayComponent implements OnInit {
       this.titleBtn = 'stop prewiev';
     } else {
       this.titleBtn = 'preview';
-      clearInterval(this.inter2);
+      clearInterval(this.inter2); // prop to change
     }
   }
 
@@ -87,24 +86,24 @@ export class XrayComponent implements OnInit {
     }, 10000);
   }
 
-  // const httpOptions = {
-  //   headers: new HttpHeaders({
-  //     'Content-Type':  'application/json',
-  //     'Authorization': 'my-auth-token'
-  //   })
-  //  }
 
   onSubmit() {
     class DatasToSend {
-      constructor(public light: number, public contrast: number,public blackWhite: boolean, public patientName: string) { }
+      constructor(public light: number,
+        public contrast: number,
+        public blackWhite: boolean,
+        public patientName: string) { }
     }
     this.freshDatas = new DatasToSend(this.lightValue, this.contrastValue, this.blackAndWhite, this.patientName);
-    console.log(this.freshDatas);
+    // console.log(this.freshDatas);
 
-  //   return this.http.post(this.freshDatas, datas, httpOptions)
-  //  .pipe(
-  //    catchError(this.handleError('addHero', hero))
-  //  );
+
+  this.getData.postData('http://localhost:3000/profiles/'
+  , this.freshDatas)
+  .subscribe(
+    (data:any) => {
+      this.captureImage();
+  });
   }
 
 }

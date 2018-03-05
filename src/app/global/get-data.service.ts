@@ -23,5 +23,8 @@ export class GetDataService {
       .get(datas);
   }
 
-
+  postData(db:any, postedData: any) {
+   return this.http
+    .post(db, postedData);
+  }
 }

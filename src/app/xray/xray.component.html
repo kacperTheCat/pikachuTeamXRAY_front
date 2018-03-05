@@ -38,7 +38,7 @@
           <input matInput placeholder="patient name" [(ngModel)]="patientName">
         </mat-form-field>
 
-        <button mat-raised-button color="warn" type="submit" (click)="captureImage(); hideBtn(); onSubmit()" [disabled]="!disableBtn">{{titleCptBtn}}</button>
+        <button mat-raised-button color="warn" type="submit" (click)="onSubmit(); hideBtn();" [disabled]="!disableBtn">{{titleCptBtn}}</button>
       </div>
 
     </mat-card-actions>
