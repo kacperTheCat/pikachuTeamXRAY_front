@@ -1,18 +1,15 @@
 <div class="container">
   <mat-card class="">
 
-
     <mat-card-header>
       <!-- tutaj jakie informacje -->
-      <h2>{{ patientName }}</h2>
+      <h2 class="patient-name">Patient: {{ patientName }}</h2>
     </mat-card-header>
 
     <mat-card-content>
       <img mat-card-image [src]='comingImage' alt="Photo of a random cat">
-
-
       <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="getDataOnClick()">{{titleBtn}}</button>
+        <button mat-raised-button color="primary" (click)="getStream()">{{titleBtn}}</button>
         <!-- <button mat-button color="warn" (click)="captureImage(); hideBtn()" [disabled]="!disableBtn">{{titleCptBtn}}</button> -->
       </mat-card-actions>
     </mat-card-content>
@@ -31,16 +28,14 @@
       </div>
       <div class="content">
         <div class="content__element-label">
-          <label for="blackAndWhiteCheckbox">Black and white: </label>
-          <mat-checkbox id="blackAndWhiteCheckbox" class="black-white-checkbox" [(ngModel)]="blackAndWhite"></mat-checkbox>
+          <label for="blackAndWhite">Black and white: </label>
+          <mat-checkbox id="blackAndWhite" class="black-white-checkbox" [(ngModel)]="blackAndWhite"></mat-checkbox>
         </div>
         <mat-form-field class="patient-name">
           <input matInput placeholder="patient name" [(ngModel)]="patientName">
         </mat-form-field>
-
         <button mat-raised-button color="warn" type="submit" (click)="onSubmit(); hideBtn();" [disabled]="!disableBtn">{{titleCptBtn}}</button>
       </div>
-
     </mat-card-actions>
   </mat-card>
 </div>

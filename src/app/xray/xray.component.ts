@@ -7,7 +7,7 @@ import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 import { Title } from '@angular/platform-browser';
 import 'rxjs/add/observable/interval'; // wird
 import { GetDataService, Image } from '../global/get-data.service';
-import { imgAddress } from '../global/address';
+import { imgAddress, xRayImage } from '../global/address';
 import { NgModel } from '@angular/forms';
 
 
@@ -31,7 +31,7 @@ export class XrayComponent implements OnInit {
   titleCptBtn: any = 'capture';
   error: any;
   disableBtn = true;
-  inter2: any;
+  previevInterval: any;
   lightValue = 50;
   contrastValue = 50;
   blackAndWhite = false;
@@ -40,15 +40,15 @@ export class XrayComponent implements OnInit {
 
   ngOnInit() { }
 
-  getDataOnClick() {
+  getStream() {
     if (this.titleBtn === 'preview') {
-      this.inter2 = setInterval(() => {
+      this.previevInterval = setInterval(() => {
         this.getImage();
       }, 1000);
       this.titleBtn = 'stop prewiev';
     } else {
       this.titleBtn = 'preview';
-      clearInterval(this.inter2); // prop to change
+      clearInterval(this.previevInterval); // prop to change
     }
   }
 
@@ -63,10 +63,21 @@ export class XrayComponent implements OnInit {
           console.log('server err'); // need to full error handle
         });
   }
-
+  getXray() {
+    this.getData.getData(xRayImage)
+      .subscribe(
+        (img: Image) => {
+          console.log('blalalal');
+          this.comingImage = `data:image/jpeg;base64,${img.base64}`;
+        },
+        (error: string) => {
+          this.error = error;
+          console.log('xRay error'); // need to full error handle
+        });
+  }
   captureImage() {
-    this.getImage();
-    clearInterval(this.inter2);
+    this.getXray();
+    clearInterval(this.previevInterval);
     this.titleBtn = 'preview';
     // it shoud hide preview btn?
   }
@@ -98,12 +109,13 @@ export class XrayComponent implements OnInit {
     // console.log(this.freshDatas);
 
 
-  this.getData.postData('http://localhost:3000/profiles/'
-  , this.freshDatas)
-  .subscribe(
-    (data:any) => {
-      this.captureImage();
-  });
+    this.getData.postData('http://localhost:3000/profiles/'
+      , this.freshDatas)
+      .subscribe(
+        (data: any) => {
+
+          this.captureImage();
+        });
   }
 
 }
