@@ -26,7 +26,7 @@ export class GetData {
   }
 
   private newMethod(): string {
-    return `http://10.28.68.119/api/camera`;
+    return `http://localhost:61182/api/camera`;
   }
 
 
