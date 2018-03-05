@@ -10,6 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 // import { GetData } from './get-data.service';
 import { GetDataService } from '../global/get-data.service';
+import {FormsModule} from '@angular/forms'
 
 
 
@@ -23,7 +24,8 @@ import { GetDataService } from '../global/get-data.service';
     MaterialModule,
     XrayRoutingModule,
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   declarations: [
     XrayComponent

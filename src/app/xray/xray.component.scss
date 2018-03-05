@@ -19,8 +19,24 @@
   display: flex;
   align-items: center;
 }
-.parameter{
+.content {
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+
+    &__element-label {
+      display: flex;
+      justify-content: space-between;
+    }
+}
+.patient-name {
+  margin-top: 1rem;
+}
+.parameter {
   display: block;
   padding: 20px;
-
+}
+.parameter-name{
+  display: flex;
+  flex-direction: column;
 }

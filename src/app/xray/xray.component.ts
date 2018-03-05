@@ -9,6 +9,7 @@ import { Title } from '@angular/platform-browser';
 import 'rxjs/add/observable/interval'; // wird
 import { GetDataService, Image } from '../global/get-data.service';
 import { imgAddress } from '../global/address';
+import { NgModel } from '@angular/forms';
 
 
 
@@ -22,7 +23,7 @@ export class XrayComponent implements OnInit {
 
   datas: string;
 
-  constructor( private getData: GetDataService) { }
+  constructor(private getData: GetDataService) { }
   previewOn = ``;
 
   comingImage: String = 'https://loremflickr.com/320/240';
@@ -32,6 +33,11 @@ export class XrayComponent implements OnInit {
   error: any;
   disableBtn = true;
   inter2: any;
+  lightValue = 50;
+  contrastValue = 50;
+  blackAndWhite = false;
+  patientName: string;
+  freshDatas: object;
 
   ngOnInit() { }
 
@@ -81,26 +87,25 @@ export class XrayComponent implements OnInit {
     }, 10000);
   }
 
-  getParameters(){
-    let sliderOneElement = document.getElementById("sliderOne");
-    let sliderOneValue = sliderOneElement.getAttribute("aria-valuenow");
-    
-    let sliderTwoElement = document.getElementById("sliderTwo");
-    let slidetTwoValue = sliderTwoElement.getAttribute("aria-valuenow");
-    
-    let checkboxOneElement = document.getElementById("checkboxOne-input");
-    let checkboxOneValue = checkboxOneElement.getAttribute("aria-checked");
-   
-    let inputOneElement = document.getElementById("inputOne");
-    let inputOneText = inputOneElement.value;
+  // const httpOptions = {
+  //   headers: new HttpHeaders({
+  //     'Content-Type':  'application/json',
+  //     'Authorization': 'my-auth-token'
+  //   })
+  //  }
 
-    var obj = new Object();
-    obj.paramOne = sliderOneValue;
-    obj.paramTwo = slidetTwoValue;
-    obj.paramThree = checkboxOneValue;
-    obj.paramFour = inputOneText;
-    var jsonParameters = JSON.stringify(obj);
-    console.log(jsonParameters);
+  onSubmit() {
+    class DatasToSend {
+      constructor(public light: number, public contrast: number,public blackWhite: boolean, public patientName: string) { }
+    }
+    this.freshDatas = new DatasToSend(this.lightValue, this.contrastValue, this.blackAndWhite, this.patientName);
+    console.log(this.freshDatas);
 
-  };
+  //   return this.http.post(this.freshDatas, datas, httpOptions)
+  //  .pipe(
+  //    catchError(this.handleError('addHero', hero))
+  //  );
+  }
+
 }
+
