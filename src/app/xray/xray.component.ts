@@ -67,7 +67,6 @@ export class XrayComponent implements OnInit {
     this.getData.getData(xRayImage)
       .subscribe(
         (img: Image) => {
-          console.log('blalalal');
           this.comingImage = `data:image/jpeg;base64,${img.base64}`;
         },
         (error: string) => {
@@ -113,8 +112,11 @@ export class XrayComponent implements OnInit {
       , this.freshDatas)
       .subscribe(
         (data: any) => {
-
           this.captureImage();
+          this.audio = new Audio();
+          this.audio.src = 'assets/arc1.mp3';
+          this.audio.load();
+          this.audio.play();
         });
   }
 
