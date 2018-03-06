@@ -110,16 +110,24 @@ export class XrayComponent implements OnInit {
     // console.log(this.freshDatas);
 
 
-    this.getData.postData('http://localhost:3000/profiles/'
+    this.getData.postData('http://localhost:61182/api/RtgParameters'
       , this.freshDatas)
       .subscribe(
         (data: any) => {
           this.captureImage();
+<<<<<<< HEAD
 
           this.audio = new Audio();
           this.audio.src = 'assets/arc1.mp3';
           this.audio.load();
           this.audio.play();
+=======
+          console.log(this.freshDatas);
+          // this.audio = new Audio();
+          // this.audio.src = 'assets/arc1.mp3';
+          // this.audio.load();
+          // this.audio.play();
+>>>>>>> c5ec39d707bcb32efe5f61fdfa1a4364d97da594
         });
   }
 
