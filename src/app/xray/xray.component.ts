@@ -37,6 +37,8 @@ export class XrayComponent implements OnInit {
   blackAndWhite = false;
   patientName: string;
   freshDatas: object;
+  audio: any;
+  src: any;
 
   ngOnInit() { }
 
@@ -113,6 +115,7 @@ export class XrayComponent implements OnInit {
       .subscribe(
         (data: any) => {
           this.captureImage();
+
           this.audio = new Audio();
           this.audio.src = 'assets/arc1.mp3';
           this.audio.load();
