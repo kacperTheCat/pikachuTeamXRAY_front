@@ -23,10 +23,9 @@ export class XrayComponent implements OnInit {
   datas: string;
 
   constructor(private getData: GetDataService) { }
+
   previewOn = ``;
-
   comingImage: String = 'https://loremflickr.com/320/240';
-
   titleBtn = 'preview';
   titleCptBtn: any = 'capture';
   error: any;
@@ -39,8 +38,16 @@ export class XrayComponent implements OnInit {
   freshDatas: object;
   audio: any;
   src: any;
+  bodyPart: any = [];
+  clientUrl: String = 'http://localhost:61182/api/RtgParameters';
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.bodyPart = [
+      { name: 'Default', lightValue: 50, contrastValue:50, blackAndWhite: false },
+      { name: 'Leg', lightValue: 70, contrastValue: 30, blackAndWhite: true },
+      { name: 'Head', lightValue: 20, contrastValue: 70, blackAndWhite: true }
+    ];
+  }
 
   getStream() {
     if (this.titleBtn === 'preview') {
@@ -65,6 +72,7 @@ export class XrayComponent implements OnInit {
           console.log('server err'); // need to full error handle
         });
   }
+
   getXray() {
     this.getData.getData(xRayImage)
       .subscribe(
@@ -76,11 +84,11 @@ export class XrayComponent implements OnInit {
           console.log('xRay error'); // need to full error handle
         });
   }
+
   captureImage() {
     this.getXray();
     clearInterval(this.previevInterval);
-    this.titleBtn = 'preview';
-    // it shoud hide preview btn?
+    this.titleBtn = 'preview'; // it shoud hide preview btn?
   }
 
   hideBtn() {
@@ -98,7 +106,6 @@ export class XrayComponent implements OnInit {
     }, 10000);
   }
 
-
   onSubmit() {
     class DatasToSend {
       constructor(public light: number,
@@ -107,29 +114,41 @@ export class XrayComponent implements OnInit {
         public patientName: string) { }
     }
     this.freshDatas = new DatasToSend(this.lightValue, this.contrastValue, this.blackAndWhite, this.patientName);
-    // console.log(this.freshDatas);
 
-
-    this.getData.postData('http://localhost:61182/api/RtgParameters'
-      , this.freshDatas)
+    this.getData.postData(this.clientUrl,this.freshDatas)
       .subscribe(
         (data: any) => {
           this.captureImage();
-<<<<<<< HEAD
-
           this.audio = new Audio();
           this.audio.src = 'assets/arc1.mp3';
           this.audio.load();
           this.audio.play();
-=======
-          console.log(this.freshDatas);
-          // this.audio = new Audio();
-          // this.audio.src = 'assets/arc1.mp3';
-          // this.audio.load();
-          // this.audio.play();
->>>>>>> c5ec39d707bcb32efe5f61fdfa1a4364d97da594
-        });
+        }
+      );
   }
 
-}
+  SelectBodyPart(bodyPartName: any) {
+    switch (bodyPartName) {
+      case 'Default':
+        this.lightValue = this.bodyPart[0].lightValue;
+        this.contrastValue = this.bodyPart[0].contrastValue;
+        this.blackAndWhite = this.bodyPart[0].blackAndWhite;
+        break;
 
+      case 'Leg':
+        this.lightValue = this.bodyPart[1].lightValue;
+        this.contrastValue = this.bodyPart[1].contrastValue;
+        this.blackAndWhite = this.bodyPart[1].blackAndWhite;
+      break;
+        
+      case 'Head':
+        this.lightValue = this.bodyPart[2].lightValue;
+        this.contrastValue = this.bodyPart[2].contrastValue;
+        this.blackAndWhite = this.bodyPart[2].blackAndWhite;
+        break;
+
+      default:
+        break;
+    }
+  }
+}

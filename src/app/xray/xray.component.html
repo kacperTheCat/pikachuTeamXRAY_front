@@ -14,12 +14,17 @@
       </mat-card-actions>
     </mat-card-content>
 
+    <mat-form-field>
+      <mat-select placeholder="Select body part">
+        <mat-option (click)="SelectBodyPart(part.name)" *ngFor="let part of bodyPart" [value]="bodyPart.name">
+          {{ part.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <mat-card-actions class="row-wrap">
       <div class="parameter-name">
-        <mat-slider id="lightValue" [max]="100" [min]="0" thumb-label="thumbLabel" [(ngModel)]="lightValue" vertical="verical">
-          <!-- inputs shoud be in form -->
-          <!-- values have to be send onsumbit, textfield need validation -->
-        </mat-slider>
+        <mat-slider id="lightValue" [max]="100" [min]="0" thumb-label="thumbLabel" [(ngModel)]="lightValue" vertical="verical"></mat-slider>
         <label for="lightValue">Light</label>
       </div>
       <div class="parameter-name">
