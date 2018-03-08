@@ -1,14 +1,21 @@
 <div class="container">
   <mat-card class="content">
     <mat-card-content>
-      <h1 [hidden]="isLoading" *ngIf="isLoading">Hello {{ username }}
-        <br> and welcome in {{ deviceName }} app
-      </h1>
+      <mat-card-title>
+        <h1 [hidden]="isLoading">Hello user
+        </h1>
+      </mat-card-title>
+        <h2 [hidden]="isLoading">
+          and welcome in {{ deviceName }} app
+        </h2>
       <!-- xRay app będzie zamienione na zazwę dostarczaną z backu -->
       <h2 class="sub-head" [hidden]="isLoading">{{ ipAdress }}
 
         <br [hidden]="isLoading"> {{ version }}
       </h2>
+      <p>
+        <img class="logo" src="assets/pikachu.png" alt="angular logo" />
+      </p>
       <!-- też będzie podstawiane -->
     </mat-card-content>
 
@@ -26,5 +33,7 @@
       </mat-card-subtitle>
     </mat-card-content>
   </mat-card>
-  <mat-card-footer class="footer">	&copy; pikachuTeam - winter academy tieto</mat-card-footer>
+  <mat-card-footer class="footer">
+    <p>© 2018 Tieto Winter Academy ALL RIGHTS RESERVED</p>
+  </mat-card-footer>
 </div>

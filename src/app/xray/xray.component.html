@@ -1,31 +1,40 @@
 <div class="container">
   <mat-card class="">
 
-
     <mat-card-header>
       <!-- tutaj jakie informacje -->
+      <h2 class="patient-name">Patient: {{ patientName }}</h2>
     </mat-card-header>
 
     <mat-card-content>
-    <img mat-card-image [src]='comingImage' alt="Photo of a random cat">
+      <img mat-card-image [src]='comingImage' alt="Photo of a random cat">
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="getStream()">{{titleBtn}}</button>
+        <!-- <button mat-button color="warn" (click)="captureImage(); hideBtn()" [disabled]="!disableBtn">{{titleCptBtn}}</button> -->
+      </mat-card-actions>
+    </mat-card-content>
 
-
-    <mat-card-actions>
-      <button mat-button color="primary" (click)="getDataOnClick()">preview</button>
-      <button mat-button color="warn" (click)="captureImage()">capture</button>
-    </mat-card-actions>
-  </mat-card-content>
     <mat-card-actions class="row-wrap">
-      <mat-slider color="warn" min="0" max="3" step="1" value="1" vertical="vertical" tick-interval="tickInterval">radiation</mat-slider>
-      <mat-slider color="primary" min="0" max="3" step="1" value="2" vertical="vertical" tick-interval="tickInterval">radiation</mat-slider>
-      <mat-slider color="accent" min="0" max="3" step="1" value="3" vertical="vertical" tick-interval="tickInterval">radiation</mat-slider>
-      <mat-slide-toggle
- class="example-margin"
-      color="warn">
-      Extra xRay
-  </mat-slide-toggle>
+      <div class="parameter-name">
+        <mat-slider id="lightValue" [max]="100" [min]="0" thumb-label="thumbLabel" [(ngModel)]="lightValue" vertical="verical">
+          <!-- inputs shoud be in form -->
+          <!-- values have to be send onsumbit, textfield need validation -->
+        </mat-slider>
+        <label for="lightValue">Light</label>
+      </div>
+      <div class="parameter-name">
+        <mat-slider id="contrastValue" [max]="100" [min]="0" thumb-label="thumbLabel" [(ngModel)]="contrastValue" vertical="verical"></mat-slider>
+        <label for="contrastValue">Contrast</label>
+      </div>
+      <div class="content">
+        <div class="content__element-label">
+          <mat-checkbox class="black-white-checkbox" [(ngModel)]="blackAndWhite">Black and white</mat-checkbox>
+        </div>
+        <mat-form-field class="patient-name">
+          <input matInput placeholder="patient name" [(ngModel)]="patientName">
+        </mat-form-field>
+        <button mat-raised-button color="warn" type="submit" (click)="onSubmit(); hideBtn();" [disabled]="!disableBtn">{{titleCptBtn}}</button>
+      </div>
     </mat-card-actions>
   </mat-card>
-
 </div>
-  <mat-card-footer class="footer">	&copy; pikachuTeam - winter academy tieto</mat-card-footer>

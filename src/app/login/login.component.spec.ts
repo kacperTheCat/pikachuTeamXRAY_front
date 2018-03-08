@@ -9,6 +9,7 @@ import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { MaterialModule } from '@app/material.module';
 import { LoginComponent } from './login.component';
+import { LoginModule } from '@app/login/login.module';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -41,3 +42,15 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+// checking if login module loads
+describe('login', () => {
+  let expected = LoginModule ;
+  let notExpected = '';
+
+it('check if login module loads', 
+  () => expect(expected).toBe(true));
+it('check if login module loads', 
+  () => expect(expected).not.toBe(notExpected));
+});
+
