@@ -7,7 +7,7 @@ import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 import { Title } from '@angular/platform-browser';
 // import 'rxjs/add/observable/interval'; // wird
 import { GetDataService, Image } from '../global/get-data.service';
-import { imgAddress, xRayImage, postingData } from '../global/address';
+import { imgAddress, xRayImage } from '../global/address';
 
 
 
