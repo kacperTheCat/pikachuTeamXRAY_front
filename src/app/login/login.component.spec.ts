@@ -44,12 +44,12 @@ describe('LoginComponent', () => {
 });
 
 // checking if login module loads
-describe('login', () => {
+describe('login module', () => {
   let expected = LoginModule ;
   let notExpected = '';
 
 it('check if login module loads', 
-  () => expect(expected).toBe(true));
+  () => expect(expected).not.toBe(null));
 it('check if login module loads', 
   () => expect(expected).not.toBe(notExpected));
 });

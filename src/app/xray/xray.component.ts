@@ -32,7 +32,7 @@ export class XrayComponent implements OnInit {
   error: any;
   disableBtn = true;
   previevInterval: any;
-  lightValue = 50;
+  public lightValue:number = 50;
   contrastValue = 50;
   blackAndWhite = false;
   patientName: string;
