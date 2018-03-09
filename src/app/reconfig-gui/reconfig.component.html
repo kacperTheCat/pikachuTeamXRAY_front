@@ -1,0 +1,16 @@
+<div class="container">
+  <mat-card class="content">
+    <h1>
+      <mat-card-title translate>Reconfig the machine</mat-card-title>
+    </h1>
+    <mat-card-content>
+      <mat-form-field>
+        <mat-select placeholder="Select Machine">
+          <mat-option  *ngFor="let machine of machines" [value]="machine">
+            {{ machine }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-content>
+  </mat-card>
+</div>

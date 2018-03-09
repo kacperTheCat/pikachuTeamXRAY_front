@@ -17,7 +17,10 @@ import { LoginModule } from './login/login.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { XrayComponent } from './xray/xray.component';
-// import { GetData } from '@app/xRay/get-data.service';
+import { ReconfigModule } from './reconfig-gui/reconfig.module';
+import { ReconfigComponent } from './reconfig-gui/reconfig.component';
+
+
 
 
 
@@ -36,6 +39,7 @@ import { XrayComponent } from './xray/xray.component';
     AboutModule,
     LoginModule,
     XrayModule,
+    ReconfigModule,
     AppRoutingModule
   ],
   declarations: [AppComponent],
