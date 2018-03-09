@@ -5,10 +5,9 @@ import { Observable } from 'rxjs/Observable';
 import { finalize } from 'rxjs/operators';
 import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 import { Title } from '@angular/platform-browser';
-import 'rxjs/add/observable/interval'; // wird
+// import 'rxjs/add/observable/interval'; // wird
 import { GetDataService, Image } from '../global/get-data.service';
-import { imgAddress, xRayImage } from '../global/address';
-import { NgModel } from '@angular/forms';
+import { imgAddress, xRayImage, postingData } from '../global/address';
 
 
 
@@ -37,17 +36,10 @@ export class XrayComponent implements OnInit {
   patientName: string;
   freshDatas: object;
   audio: any;
-  src: any;
-  bodyPart: any = [];
-  clientUrl: String = 'http://localhost:61182/api/RtgParameters';
+  bodyParts = ['Default', 'Leg', 'Head'];
+  user: 'user'; //teporary
 
-  ngOnInit() {
-    this.bodyPart = [
-      { name: 'Default', lightValue: 50, contrastValue:50, blackAndWhite: false },
-      { name: 'Leg', lightValue: 70, contrastValue: 30, blackAndWhite: true },
-      { name: 'Head', lightValue: 20, contrastValue: 70, blackAndWhite: true }
-    ];
-  }
+  ngOnInit() {}
 
   getStream() {
     if (this.titleBtn === 'preview') {
@@ -108,14 +100,22 @@ export class XrayComponent implements OnInit {
 
   onSubmit() {
     class DatasToSend {
-      constructor(public light: number,
-        public contrast: number,
-        public blackWhite: boolean,
-        public patientName: string) { }
+      constructor(
+        protected light: number,
+        protected contrast: number,
+        protected blackWhite: boolean,
+        protected patientName: string,
+        protected user: string) { }
     }
-    this.freshDatas = new DatasToSend(this.lightValue, this.contrastValue, this.blackAndWhite, this.patientName);
+    this.freshDatas = new DatasToSend(
+       this.lightValue,
+       this.contrastValue,
+       this.blackAndWhite,
+       this.patientName,
+       this.user
+      );
 
-    this.getData.postData(this.clientUrl,this.freshDatas)
+    this.getData.postData(xRayImage, this.freshDatas)
       .subscribe(
         (data: any) => {
           this.captureImage();
@@ -130,25 +130,27 @@ export class XrayComponent implements OnInit {
   SelectBodyPart(bodyPartName: any) {
     switch (bodyPartName) {
       case 'Default':
-        this.lightValue = this.bodyPart[0].lightValue;
-        this.contrastValue = this.bodyPart[0].contrastValue;
-        this.blackAndWhite = this.bodyPart[0].blackAndWhite;
+        this.lightValue = 50;
+        this.contrastValue = 50;
+        this.blackAndWhite = false;
         break;
 
       case 'Leg':
-        this.lightValue = this.bodyPart[1].lightValue;
-        this.contrastValue = this.bodyPart[1].contrastValue;
-        this.blackAndWhite = this.bodyPart[1].blackAndWhite;
+        this.lightValue = 20;
+        this.contrastValue = 30;
+        this.blackAndWhite = true;
       break;
-        
+
       case 'Head':
-        this.lightValue = this.bodyPart[2].lightValue;
-        this.contrastValue = this.bodyPart[2].contrastValue;
-        this.blackAndWhite = this.bodyPart[2].blackAndWhite;
+        this.lightValue = 75;
+        this.contrastValue = 69;
+        this.blackAndWhite = true;
         break;
 
       default:
         break;
     }
   }
+
+
 }

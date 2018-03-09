@@ -16,8 +16,8 @@
 
     <mat-form-field>
       <mat-select placeholder="Select body part">
-        <mat-option (click)="SelectBodyPart(part.name)" *ngFor="let part of bodyPart" [value]="bodyPart.name">
-          {{ part.name }}
+        <mat-option (click)="SelectBodyPart(part)" *ngFor="let part of bodyParts" [value]="part">
+          {{ part }}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -36,7 +36,7 @@
           <mat-checkbox class="black-white-checkbox" [(ngModel)]="blackAndWhite">Black and white</mat-checkbox>
         </div>
         <mat-form-field class="patient-name">
-          <input matInput placeholder="patient name" [(ngModel)]="patientName">
+          <input matInput placeholder="patient name" [(ngModel)]="patientName" required>
         </mat-form-field>
         <button mat-raised-button color="warn" type="submit" (click)="onSubmit(); hideBtn();" [disabled]="!disableBtn">{{titleCptBtn}}</button>
       </div>
