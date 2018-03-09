@@ -19,11 +19,10 @@ import { imgAddress, xRayImage, postingData } from '../global/address';
 
 export class XrayComponent implements OnInit {
 
-  datas: string;
 
   constructor(private getData: GetDataService) { }
 
-  previewOn = ``;
+
   comingImage: String = 'https://loremflickr.com/320/240';
   titleBtn = 'preview';
   titleCptBtn: any = 'capture';
@@ -37,9 +36,9 @@ export class XrayComponent implements OnInit {
   freshDatas: object;
   audio: any;
   bodyParts = ['Default', 'Leg', 'Head'];
-  user: 'user'; //teporary
+  user: 'user'; // teporary
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   getStream() {
     if (this.titleBtn === 'preview') {
@@ -65,20 +64,26 @@ export class XrayComponent implements OnInit {
         });
   }
 
-  getXray() {
-    this.getData.getData(xRayImage)
-      .subscribe(
-        (img: Image) => {
-          this.comingImage = `data:image/jpeg;base64,${img.base64}`;
-        },
-        (error: string) => {
-          this.error = error;
-          console.log('xRay error'); // need to full error handle
-        });
+  playXraySound() {
+    this.audio = new Audio();
+    this.audio.src = 'assets/arc1.mp3';
+    this.audio.load();
+    this.audio.play();
   }
 
-  captureImage() {
-    this.getXray();
+  getXray() {
+    this.playXraySound();
+    const res = this.getData.postData(xRayImage, this.freshDatas)
+      .subscribe(
+        (res: Image) => {
+          setTimeout(() => {
+            this.comingImage = `data:image/jpeg;base64,${res.base64}`;
+          }, 2000);
+        }
+      );
+  }
+
+  setCapturebtn() {
     clearInterval(this.previevInterval);
     this.titleBtn = 'preview'; // it shoud hide preview btn?
   }
@@ -99,6 +104,7 @@ export class XrayComponent implements OnInit {
   }
 
   onSubmit() {
+    this.setCapturebtn();
     class DatasToSend {
       constructor(
         protected light: number,
@@ -107,24 +113,16 @@ export class XrayComponent implements OnInit {
         protected patientName: string,
         protected user: string) { }
     }
+    // create new obj with datas from our inputs
     this.freshDatas = new DatasToSend(
-       this.lightValue,
-       this.contrastValue,
-       this.blackAndWhite,
-       this.patientName,
-       this.user
-      );
-
-    this.getData.postData(xRayImage, this.freshDatas)
-      .subscribe(
-        (data: any) => {
-          this.captureImage();
-          this.audio = new Audio();
-          this.audio.src = 'assets/arc1.mp3';
-          this.audio.load();
-          this.audio.play();
-        }
-      );
+      this.lightValue,
+      this.contrastValue,
+      this.blackAndWhite,
+      this.patientName,
+      this.user
+    );
+    // call getXray()
+    this.getXray();
   }
 
   SelectBodyPart(bodyPartName: any) {
@@ -139,7 +137,7 @@ export class XrayComponent implements OnInit {
         this.lightValue = 20;
         this.contrastValue = 30;
         this.blackAndWhite = true;
-      break;
+        break;
 
       case 'Head':
         this.lightValue = 75;
