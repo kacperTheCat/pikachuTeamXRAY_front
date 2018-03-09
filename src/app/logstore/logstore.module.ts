@@ -6,14 +6,15 @@ import { MaterialModule } from '@app/material.module';
 
 import { LogstoreRoutingModule } from './logstore-routing.module';
 import { LogstoreComponent } from './logstore.component';
-
+import {MatTableModule} from '@angular/material/table';
 @NgModule({
   imports: [
     CommonModule,
     TranslateModule,
     FlexLayoutModule,
     MaterialModule,
-    LogstoreRoutingModule
+    LogstoreRoutingModule,
+    MatTableModule
   ],
   declarations: [
     LogstoreComponent
