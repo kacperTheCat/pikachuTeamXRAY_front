@@ -5,12 +5,10 @@ import { Observable } from 'rxjs/Observable';
 import { finalize } from 'rxjs/operators';
 import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 import { Title } from '@angular/platform-browser';
-import 'rxjs/add/observable/interval'; // wird
+// import 'rxjs/add/observable/interval'; // wird
 import { GetDataService, Image } from '../global/get-data.service';
-import { imgAddress, xRayImage, clientUrl } from '../global/address';
 import { NgModel } from '@angular/forms';
-
-
+import { imgAddress, xRayImage } from '../global/address';
 
 @Component({
   selector: 'app-xray',
@@ -20,11 +18,10 @@ import { NgModel } from '@angular/forms';
 
 export class XrayComponent implements OnInit {
 
-  datas: string;
 
   constructor(private getData: GetDataService) { }
 
-  previewOn = ``;
+
   comingImage: String = 'https://loremflickr.com/320/240';
   titleBtn = 'preview';
   titleCptBtn: any = 'capture';
@@ -37,16 +34,10 @@ export class XrayComponent implements OnInit {
   patientName: string;
   freshDatas: object;
   audio: any;
-  src: any;
-  bodyPart: any = [];
+  bodyParts = ['Default', 'Leg', 'Head'];
+  user: 'user'; // teporary
   
-  ngOnInit() {
-    this.bodyPart = [
-      { name: 'Default', lightValue: 50, contrastValue:50, blackAndWhite: false },
-      { name: 'Leg', lightValue: 70, contrastValue: 30, blackAndWhite: true },
-      { name: 'Head', lightValue: 20, contrastValue: 70, blackAndWhite: true }
-    ];
-  }
+  ngOnInit() { }
 
   getStream() {
     if (this.titleBtn === 'preview') {
@@ -72,20 +63,26 @@ export class XrayComponent implements OnInit {
         });
   }
 
-  getXray() {
-    this.getData.getData(xRayImage)
-      .subscribe(
-        (img: Image) => {
-          this.comingImage = `data:image/jpeg;base64,${img.base64}`;
-        },
-        (error: string) => {
-          this.error = error;
-          console.log('xRay error'); // need to full error handle
-        });
+  playXraySound() {
+    this.audio = new Audio();
+    this.audio.src = 'assets/arc1.mp3';
+    this.audio.load();
+    this.audio.play();
   }
 
-  captureImage() {
-    this.getXray();
+  getXray() {
+    this.playXraySound();
+    const res = this.getData.postData(xRayImage, this.freshDatas)
+      .subscribe(
+        (res: Image) => {
+          setTimeout(() => {
+            this.comingImage = `data:image/jpeg;base64,${res.base64}`;
+          }, 2000);
+        }
+      );
+  }
+
+  setCapturebtn() {
     clearInterval(this.previevInterval);
     this.titleBtn = 'preview'; // it shoud hide preview btn?
   }
@@ -106,48 +103,51 @@ export class XrayComponent implements OnInit {
   }
 
   onSubmit() {
+    this.setCapturebtn();
     class DatasToSend {
-      constructor(public light: number,
-        public contrast: number,
-        public blackWhite: boolean,
-        public patientName: string) { }
+      constructor(
+        protected light: number,
+        protected contrast: number,
+        protected blackWhite: boolean,
+        protected patientName: string,
+        protected user: string) { }
     }
-    this.freshDatas = new DatasToSend(this.lightValue, this.contrastValue, this.blackAndWhite, this.patientName);
+    // create new obj with datas from our inputs
+    this.freshDatas = new DatasToSend(
+      this.lightValue,
+      this.contrastValue,
+      this.blackAndWhite,
+      this.patientName,
+      this.user
+    );
+    // call getXray()
+    this.getXray();
 
-    this.getData.postData(clientUrl,this.freshDatas)
-      .subscribe(
-        (data: any) => {
-          this.captureImage();
-          this.audio = new Audio();
-          this.audio.src = 'assets/arc1.mp3';
-          this.audio.load();
-          this.audio.play();
-        }
-      );
   }
 
   SelectBodyPart(bodyPartName: any) {
     switch (bodyPartName) {
       case 'Default':
-        this.lightValue = this.bodyPart[0].lightValue;
-        this.contrastValue = this.bodyPart[0].contrastValue;
-        this.blackAndWhite = this.bodyPart[0].blackAndWhite;
+        this.lightValue = 50;
+        this.contrastValue = 50;
+        this.blackAndWhite = false;
         break;
 
       case 'Leg':
-        this.lightValue = this.bodyPart[1].lightValue;
-        this.contrastValue = this.bodyPart[1].contrastValue;
-        this.blackAndWhite = this.bodyPart[1].blackAndWhite;
-      break;
-        
+        this.lightValue = 20;
+        this.contrastValue = 30;
+        this.blackAndWhite = true;
+        break;
+
       case 'Head':
-        this.lightValue = this.bodyPart[2].lightValue;
-        this.contrastValue = this.bodyPart[2].contrastValue;
-        this.blackAndWhite = this.bodyPart[2].blackAndWhite;
+        this.lightValue = 75;
+        this.contrastValue = 69;
+        this.blackAndWhite = true;
         break;
 
       default:
         break;
     }
   }
+
 }

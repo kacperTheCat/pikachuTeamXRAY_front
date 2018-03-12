@@ -9,26 +9,26 @@
     <mat-card-content>
       <img mat-card-image [src]='comingImage' alt="Photo of a random cat">
       <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="getStream()">{{titleBtn}}</button>
+        <button mat-raised-button color="accent" (click)="getStream()">{{titleBtn}}</button>
         <!-- <button mat-button color="warn" (click)="captureImage(); hideBtn()" [disabled]="!disableBtn">{{titleCptBtn}}</button> -->
       </mat-card-actions>
     </mat-card-content>
 
     <mat-form-field>
       <mat-select placeholder="Select body part">
-        <mat-option (click)="SelectBodyPart(part.name)" *ngFor="let part of bodyPart" [value]="bodyPart.name">
-          {{ part.name }}
+        <mat-option (click)="SelectBodyPart(part)" *ngFor="let part of bodyParts" [value]="part">
+          {{ part }}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-card-actions class="row-wrap">
       <div class="parameter-name">
-        <mat-slider id="lightValue" [max]="100" [min]="0" thumb-label="thumbLabel" [(ngModel)]="lightValue" vertical="verical"></mat-slider>
+        <mat-slider id="lightValue" [max]="50" [min]="-50" thumb-label="thumbLabel" [(ngModel)]="lightValue" vertical="verical"></mat-slider>
         <label for="lightValue">Light</label>
       </div>
       <div class="parameter-name">
-        <mat-slider id="contrastValue" [max]="100" [min]="0" thumb-label="thumbLabel" [(ngModel)]="contrastValue" vertical="verical"></mat-slider>
+        <mat-slider id="contrastValue" [max]="255" [min]="-255" thumb-label="thumbLabel" [(ngModel)]="contrastValue" vertical="verical"></mat-slider>
         <label for="contrastValue">Contrast</label>
       </div>
       <div class="content">
@@ -36,7 +36,7 @@
           <mat-checkbox class="black-white-checkbox" [(ngModel)]="blackAndWhite">Black and white</mat-checkbox>
         </div>
         <mat-form-field class="patient-name">
-          <input matInput placeholder="patient name" [(ngModel)]="patientName">
+          <input matInput placeholder="patient name" [(ngModel)]="patientName" required>
         </mat-form-field>
         <button mat-raised-button color="warn" type="submit" (click)="onSubmit(); hideBtn();" [disabled]="!disableBtn">{{titleCptBtn}}</button>
       </div>

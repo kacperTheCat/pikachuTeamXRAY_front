@@ -14,13 +14,13 @@ import { LoginModule } from './login/login.module';
 import { LogstoreModule } from './logstore/logstore.module';
 import { SharedModule } from '@app/shared';
 import { XrayModule } from './xRay/xray.module';
-
 import { AppComponent } from './app.component';
 import { XrayComponent } from './xray/xray.component';
 import { LogstoreComponent } from './logstore/logstore.component';
 // import { GetData } from '@app/xRay/get-data.service';
 import { environment } from '@env/environment';
-
+import { ReconfigModule } from './reconfig-gui/reconfig.module';
+import { ReconfigComponent } from './reconfig-gui/reconfig.component';
 
 @NgModule({
   imports: [
@@ -38,6 +38,7 @@ import { environment } from '@env/environment';
     LoginModule,
     XrayModule,
     LogstoreModule,
+    ReconfigModule,
     AppRoutingModule
   ],
   declarations: [AppComponent],

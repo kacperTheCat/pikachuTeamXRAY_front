@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import { GetDataService } from '../../global/get-data.service';
+
 
 export interface Credentials {
   // Customize received credentials here
@@ -25,7 +27,7 @@ export class AuthenticationService {
 
   private _credentials: Credentials | null;
 
-  constructor() {
+  constructor(private getData: GetDataService) {
     const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
     if (savedCredentials) {
       this._credentials = JSON.parse(savedCredentials);
@@ -43,7 +45,26 @@ export class AuthenticationService {
       username: context.username,
       token: '123456'
     };
-    this.setCredentials(data, context.remember);
+    class NecesseryDatas {
+      constructor(protected username:string, protected password:string) {}
+    }
+    const necesseryDatas = new NecesseryDatas(context.username, context.password);
+
+
+    this.getData.postData('http://localhost:61182/api/loginvalidation', necesseryDatas )
+    .subscribe(
+      (res: any) => {
+          if(res.status === 'OK') {
+            this.setCredentials(data, context.remember);
+          }
+          else {
+            console.log(res.status)
+          }
+
+      }
+      );
+      // console.log(data);
+      // console.log(necesseryDatas);
     return of(data);
   }
 

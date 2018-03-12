@@ -18,7 +18,6 @@ export class HomeComponent implements OnInit {
   version = '';
   deviceName = '';
   ipAdress = '';
-  username = 'Kacper';
   visible = true;
   constructor(private getData: GetDataService) { }
 
