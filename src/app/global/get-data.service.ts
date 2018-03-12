@@ -13,6 +13,8 @@ export interface DeviceInfo {
   ipAddress: string;
 }
 
+
+
 @Injectable()
 export class GetDataService {
 

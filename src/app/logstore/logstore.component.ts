@@ -1,31 +1,62 @@
 import { Component, OnInit } from '@angular/core';
-// import {CdkTableModule} from '@angular/cdk/table';
-// import {MatTableModule} from '@angular/material/table';
+import { GetDataService } from '../global/get-data.service';
+
 @Component({
   selector: 'app-logstore',
   templateUrl: './logstore.component.html',
   styleUrls: ['./logstore.component.scss']
 })
+
 export class LogstoreComponent implements OnInit {
+
   dataSource: any;
   displayedColumns: any;
-  constructor() { }
-  ngOnInit() {
-    const ELEMENT_DATA: Element[] = [
-      {position: 1, name: 'Test', weight: 1.0079, symbol: 'H'},
-      {position: 2, name: 'Test', weight: 4.0026, symbol: 'He'},
-      {position: 3, name: 'Test', weight: 6.941, symbol: 'Li'},
-      {position: 4, name: 'Test', weight: 9.0122, symbol: 'Be'},
-      {position: 5, name: 'Test', weight: 10.811, symbol: 'B'},
-    ];
-    
-    this.displayedColumns = ['position', 'name', 'weight', 'symbol'];
-    this.dataSource = ELEMENT_DATA;
+  jsonUrl: String = 'http://localhost:61182/api/auditlogs';
+  error: any;
+  light: any;
+  contrast: any;
+  blackWhite: any;
+  patientName: string;
+  user: any;
+  imageDate: any;
+  imageTime: any;
+
+  constructor(private getLogData: GetDataService) { }
+
+  getDatas() {
+    this.getLogData.getData(this.jsonUrl)
+      .subscribe(
+        (datas: Logs) => {
+          this.light = datas.light;
+          this.contrast = datas.contrast;
+          this.blackWhite = datas.blackWhite;
+          this.patientName = datas.patientName;
+          this.user = datas.user;
+          this.imageDate = datas.imageDate;
+          this.imageTime = datas.imageTime;
+          this.dataSource = datas;
+        },
+        (error: string) => {
+          this.error = error;
+          console.log('Error, no data'); // need to full error handle
+        });
   }
+
+  ngOnInit() {
+    this.getDatas();
+    this.displayedColumns = ['light', 'contrast', 'blackWhite', 'patientName', 'user', 'imageDate', 'imageTime'];
+  }
+
 }
-export interface Element {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+
+export interface Logs {
+  light: any;
+  contrast: any;
+  blackWhite: any;
+  patientName: string;
+  user: string;
+  imageDate: string;
+  imageTime: string;
 }
+
+

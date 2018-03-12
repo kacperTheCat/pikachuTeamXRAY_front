@@ -3,27 +3,42 @@
     <mat-table #table [dataSource]="dataSource">
 
       <!-- Position Column -->
-      <ng-container matColumnDef="position">
+      <ng-container matColumnDef="light">
         <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.light}} </mat-cell>
       </ng-container>
 
       <!-- Name Column -->
-      <ng-container matColumnDef="name">
+      <ng-container matColumnDef="contrast">
         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.contrast}} </mat-cell>
       </ng-container>
 
       <!-- Weight Column -->
-      <ng-container matColumnDef="weight">
+      <ng-container matColumnDef="blackWhite">
         <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.blackWhite}} </mat-cell>
       </ng-container>
 
       <!-- Symbol Column -->
-      <ng-container matColumnDef="symbol">
-        <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+      <ng-container matColumnDef="patientName">
+        <mat-header-cell *matHeaderCellDef> patientName </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.patientName}} </mat-cell>
+      </ng-container>
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="user">
+        <mat-header-cell *matHeaderCellDef> user </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.user}} </mat-cell>
+      </ng-container>
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="imageDate">
+        <mat-header-cell *matHeaderCellDef> imageDate </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.imageDate}} </mat-cell>
+      </ng-container>
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="imageTime">
+        <mat-header-cell *matHeaderCellDef> imageTime </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.imageTime}} </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
