@@ -43,8 +43,8 @@ describe('LoginComponent', () => {
   });
 });
 
-// checking if login module loads
-describe('login module', () => {
+
+describe('should have login module loaded', () => {
   let expected = LoginModule ;
   let notExpected = '';
 
