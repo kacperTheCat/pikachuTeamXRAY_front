@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetDataService } from '../global/get-data.service';
+import { jsonUrl } from '../global/address';
 
 @Component({
   selector: 'app-logstore',
@@ -11,7 +12,6 @@ export class LogstoreComponent implements OnInit {
 
   dataSource: any;
   displayedColumns: any;
-  jsonUrl: String = 'http://localhost:61182/api/auditlogs';
   error: any;
   light: any;
   contrast: any;
@@ -24,7 +24,7 @@ export class LogstoreComponent implements OnInit {
   constructor(private getLogData: GetDataService) { }
 
   getDatas() {
-    this.getLogData.getData(this.jsonUrl)
+    this.getLogData.getData(jsonUrl)
       .subscribe(
         (datas: Logs) => {
           this.light = datas.light;

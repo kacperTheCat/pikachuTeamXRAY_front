@@ -7,7 +7,7 @@ import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 import { Title } from '@angular/platform-browser';
 import 'rxjs/add/observable/interval'; // wird
 import { GetDataService, Image } from '../global/get-data.service';
-import { imgAddress, xRayImage } from '../global/address';
+import { imgAddress, xRayImage, clientUrl } from '../global/address';
 import { NgModel } from '@angular/forms';
 
 
@@ -39,8 +39,7 @@ export class XrayComponent implements OnInit {
   audio: any;
   src: any;
   bodyPart: any = [];
-  clientUrl: String = 'http://localhost:61182/api/RtgParameters';
-
+  
   ngOnInit() {
     this.bodyPart = [
       { name: 'Default', lightValue: 50, contrastValue:50, blackAndWhite: false },
@@ -115,7 +114,7 @@ export class XrayComponent implements OnInit {
     }
     this.freshDatas = new DatasToSend(this.lightValue, this.contrastValue, this.blackAndWhite, this.patientName);
 
-    this.getData.postData(this.clientUrl,this.freshDatas)
+    this.getData.postData(clientUrl,this.freshDatas)
       .subscribe(
         (data: any) => {
           this.captureImage();
