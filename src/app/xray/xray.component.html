@@ -24,11 +24,11 @@
 
     <mat-card-actions class="row-wrap">
       <div class="parameter-name">
-        <mat-slider id="lightValue" [max]="100" [min]="0" thumb-label="thumbLabel" [(ngModel)]="lightValue" vertical="verical"></mat-slider>
+        <mat-slider id="lightValue" [max]="50" [min]="-50" thumb-label="thumbLabel" [(ngModel)]="lightValue" vertical="verical"></mat-slider>
         <label for="lightValue">Light</label>
       </div>
       <div class="parameter-name">
-        <mat-slider id="contrastValue" [max]="100" [min]="0" thumb-label="thumbLabel" [(ngModel)]="contrastValue" vertical="verical"></mat-slider>
+        <mat-slider id="contrastValue" [max]="255" [min]="-255" thumb-label="thumbLabel" [(ngModel)]="contrastValue" vertical="verical"></mat-slider>
         <label for="contrastValue">Contrast</label>
       </div>
       <div class="content">
