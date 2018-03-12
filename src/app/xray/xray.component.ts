@@ -7,9 +7,8 @@ import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 import { Title } from '@angular/platform-browser';
 // import 'rxjs/add/observable/interval'; // wird
 import { GetDataService, Image } from '../global/get-data.service';
+import { NgModel } from '@angular/forms';
 import { imgAddress, xRayImage } from '../global/address';
-
-
 
 @Component({
   selector: 'app-xray',
@@ -37,7 +36,7 @@ export class XrayComponent implements OnInit {
   audio: any;
   bodyParts = ['Default', 'Leg', 'Head'];
   user: 'user'; // teporary
-
+  
   ngOnInit() { }
 
   getStream() {
@@ -123,6 +122,7 @@ export class XrayComponent implements OnInit {
     );
     // call getXray()
     this.getXray();
+
   }
 
   SelectBodyPart(bodyPartName: any) {
@@ -149,6 +149,5 @@ export class XrayComponent implements OnInit {
         break;
     }
   }
-
 
 }

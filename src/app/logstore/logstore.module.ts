@@ -4,19 +4,20 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '@app/material.module';
 
-import { AboutRoutingModule } from './about-routing.module';
-import { AboutComponent } from './about.component';
-
+import { LogstoreRoutingModule } from './logstore-routing.module';
+import { LogstoreComponent } from './logstore.component';
+import {MatTableModule} from '@angular/material/table';
 @NgModule({
   imports: [
     CommonModule,
     TranslateModule,
     FlexLayoutModule,
     MaterialModule,
-    AboutRoutingModule
+    LogstoreRoutingModule,
+    MatTableModule
   ],
   declarations: [
-    AboutComponent
+    LogstoreComponent
   ]
 })
-export class AboutModule { }
+export class LogstoreModule { }

@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+
+      <!-- Light Column -->
+      <ng-container matColumnDef="light">
+        <mat-header-cell *matHeaderCellDef> Light </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.light}} </mat-cell>
+      </ng-container>
+
+      <!-- Contrast Column -->
+      <ng-container matColumnDef="contrast">
+        <mat-header-cell *matHeaderCellDef> Contrast </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.contrast}} </mat-cell>
+      </ng-container>
+
+      <!-- Black or white Column -->
+      <ng-container matColumnDef="negative">
+        <mat-header-cell *matHeaderCellDef> Negative </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.blackWhite}} </mat-cell>
+      </ng-container>
+
+      <!-- Patient Name Column -->
+      <ng-container matColumnDef="patientName">
+        <mat-header-cell *matHeaderCellDef> Patient Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.patientName}} </mat-cell>
+      </ng-container>
+
+      <!-- User Column -->
+      <ng-container matColumnDef="user">
+        <mat-header-cell *matHeaderCellDef> User </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.user}} </mat-cell>
+      </ng-container>
+
+      <!-- Date Column -->
+      <ng-container matColumnDef="imageDate">
+        <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.imageDate}} </mat-cell>
+      </ng-container>
+
+      <!-- Time Column -->
+      <ng-container matColumnDef="imageTime">
+        <mat-header-cell *matHeaderCellDef> Time </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.imageTime}} </mat-cell>
+      </ng-container>
+
+      <!-- Id machine Column -->
+      <ng-container matColumnDef="idMachine">
+        <mat-header-cell *matHeaderCellDef> ID Machine </mat-header-cell>
+        <mat-cell *matCellDef="let element"> idMachine </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+</div>
