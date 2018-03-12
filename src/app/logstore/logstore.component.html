@@ -15,8 +15,8 @@
       </ng-container>
 
       <!-- Black or white Column -->
-      <ng-container matColumnDef="blackWhite">
-        <mat-header-cell *matHeaderCellDef> Black or white </mat-header-cell>
+      <ng-container matColumnDef="negative">
+        <mat-header-cell *matHeaderCellDef> Negative </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.blackWhite}} </mat-cell>
       </ng-container>
 
@@ -42,6 +42,12 @@
       <ng-container matColumnDef="imageTime">
         <mat-header-cell *matHeaderCellDef> Time </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.imageTime}} </mat-cell>
+      </ng-container>
+
+      <!-- Id machine Column -->
+      <ng-container matColumnDef="idMachine">
+        <mat-header-cell *matHeaderCellDef> ID Machine </mat-header-cell>
+        <mat-cell *matCellDef="let element"> idMachine </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

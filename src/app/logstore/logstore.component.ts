@@ -10,7 +10,7 @@ import { jsonUrl } from '../global/address';
 
 export class LogstoreComponent implements OnInit {
 
-  dataSource: any;
+  dataSource: any = [];
   displayedColumns: any;
   error: any;
   light: any;
@@ -20,21 +20,16 @@ export class LogstoreComponent implements OnInit {
   user: any;
   imageDate: any;
   imageTime: any;
+  tab: any[];
 
   constructor(private getLogData: GetDataService) { }
 
   getDatas() {
     this.getLogData.getData(jsonUrl)
       .subscribe(
-        (datas: Logs) => {
-          this.light = datas.light;
-          this.contrast = datas.contrast;
-          this.blackWhite = datas.blackWhite;
-          this.patientName = datas.patientName;
-          this.user = datas.user;
-          this.imageDate = datas.imageDate;
-          this.imageTime = datas.imageTime;
+        (datas: any) => {
           this.dataSource = datas;
+          console.log(datas);
         },
         (error: string) => {
           this.error = error;
@@ -44,7 +39,7 @@ export class LogstoreComponent implements OnInit {
 
   ngOnInit() {
     this.getDatas();
-    this.displayedColumns = ['light', 'contrast', 'blackWhite', 'patientName', 'user', 'imageDate', 'imageTime'];
+    this.displayedColumns = ['light','contrast', 'negative', 'patientName', 'user', 'imageDate', 'imageTime','idMachine'];
   }
 
 }
