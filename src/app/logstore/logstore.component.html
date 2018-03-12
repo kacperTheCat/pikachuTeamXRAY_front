@@ -2,42 +2,45 @@
   <div class="example-container mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource">
 
-      <!-- Position Column -->
+      <!-- Light Column -->
       <ng-container matColumnDef="light">
-        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Light </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.light}} </mat-cell>
       </ng-container>
 
-      <!-- Name Column -->
+      <!-- Contrast Column -->
       <ng-container matColumnDef="contrast">
-        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Contrast </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.contrast}} </mat-cell>
       </ng-container>
 
-      <!-- Weight Column -->
+      <!-- Black or white Column -->
       <ng-container matColumnDef="blackWhite">
-        <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Black or white </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.blackWhite}} </mat-cell>
       </ng-container>
 
-      <!-- Symbol Column -->
+      <!-- Patient Name Column -->
       <ng-container matColumnDef="patientName">
-        <mat-header-cell *matHeaderCellDef> patientName </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Patient Name </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.patientName}} </mat-cell>
       </ng-container>
-      <!-- Symbol Column -->
+
+      <!-- User Column -->
       <ng-container matColumnDef="user">
-        <mat-header-cell *matHeaderCellDef> user </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> User </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.user}} </mat-cell>
       </ng-container>
-      <!-- Symbol Column -->
+
+      <!-- Date Column -->
       <ng-container matColumnDef="imageDate">
-        <mat-header-cell *matHeaderCellDef> imageDate </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.imageDate}} </mat-cell>
       </ng-container>
-      <!-- Symbol Column -->
+
+      <!-- Time Column -->
       <ng-container matColumnDef="imageTime">
-        <mat-header-cell *matHeaderCellDef> imageTime </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Time </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.imageTime}} </mat-cell>
       </ng-container>
 
