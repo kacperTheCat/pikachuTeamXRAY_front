@@ -1,7 +1,11 @@
 <div class="container">
   <div class="example-container mat-elevation-z8">
+    <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+      </mat-form-field>
+    </div>
     <mat-table #table [dataSource]="dataSource">
-
       <!-- Light Column -->
       <ng-container matColumnDef="light">
         <mat-header-cell *matHeaderCellDef> Light </mat-header-cell>
@@ -17,7 +21,7 @@
       <!-- Black or white Column -->
       <ng-container matColumnDef="negative">
         <mat-header-cell *matHeaderCellDef> Negative </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.blackWhite}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.negative}} </mat-cell>
       </ng-container>
 
       <!-- Patient Name Column -->
@@ -27,9 +31,9 @@
       </ng-container>
 
       <!-- User Column -->
-      <ng-container matColumnDef="user">
+      <ng-container matColumnDef="userName">
         <mat-header-cell *matHeaderCellDef> User </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.user}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.userName}} </mat-cell>
       </ng-container>
 
       <!-- Date Column -->
@@ -45,9 +49,9 @@
       </ng-container>
 
       <!-- Id machine Column -->
-      <ng-container matColumnDef="idMachine">
+      <ng-container matColumnDef="machineID">
         <mat-header-cell *matHeaderCellDef> ID Machine </mat-header-cell>
-        <mat-cell *matCellDef="let element"> idMachine </mat-cell>
+        <mat-cell *matCellDef="let element">{{element.machineID}} </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

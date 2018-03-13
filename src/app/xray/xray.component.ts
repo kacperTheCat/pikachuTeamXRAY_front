@@ -18,35 +18,33 @@ import { imgAddress, xRayImage } from '../global/address';
 
 export class XrayComponent implements OnInit {
 
-
   constructor(private getData: GetDataService) { }
 
-
   comingImage: String = 'https://loremflickr.com/320/240';
-  titleBtn = 'preview';
-  titleCptBtn: any = 'capture';
+  titleBtn = 'Preview';
+  titleCptBtn: any = 'Capture';
   error: any;
   disableBtn = true;
   previevInterval: any;
-  lightValue = 50;
-  contrastValue = 50;
-  blackAndWhite = false;
+  light = 50;
+  contrast = 50;
+  negative = false;
   patientName: string;
   freshDatas: object;
   audio: any;
   bodyParts = ['Default', 'Leg', 'Head'];
-  user: 'user'; // teporary
+  userName: 'userName'; // teporary
   
   ngOnInit() { }
 
   getStream() {
-    if (this.titleBtn === 'preview') {
+    if (this.titleBtn === 'Preview') {
       this.previevInterval = setInterval(() => {
         this.getImage();
       }, 1000);
-      this.titleBtn = 'stop prewiev';
+      this.titleBtn = 'Stop preview';
     } else {
-      this.titleBtn = 'preview';
+      this.titleBtn = 'Preview';
       clearInterval(this.previevInterval); // prop to change
     }
   }
@@ -109,41 +107,40 @@ export class XrayComponent implements OnInit {
       constructor(
         protected light: number,
         protected contrast: number,
-        protected blackWhite: boolean,
+        protected negative: boolean,
         protected patientName: string,
-        protected user: string) { }
+        protected userName: string) { }
     }
     // create new obj with datas from our inputs
     this.freshDatas = new DatasToSend(
-      this.lightValue,
-      this.contrastValue,
-      this.blackAndWhite,
+      this.light,
+      this.contrast,
+      this.negative,
       this.patientName,
-      this.user
+      this.userName
     );
-    // call getXray()
+    
     this.getXray();
-
   }
 
   SelectBodyPart(bodyPartName: any) {
     switch (bodyPartName) {
       case 'Default':
-        this.lightValue = 50;
-        this.contrastValue = 50;
-        this.blackAndWhite = false;
+        this.light = 50;
+        this.contrast = 50;
+        this.negative = false;
         break;
 
       case 'Leg':
-        this.lightValue = 20;
-        this.contrastValue = 30;
-        this.blackAndWhite = true;
+        this.light = 20;
+        this.contrast = 30;
+        this.negative = true;
         break;
 
       case 'Head':
-        this.lightValue = 30;
-        this.contrastValue = -20;
-        this.blackAndWhite = true;
+        this.light = 30;
+        this.contrast = -20;
+        this.negative = true;
         break;
 
       default:

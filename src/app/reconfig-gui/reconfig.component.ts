@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { RTGMachines } from '../global/address';
 import { environment } from '@env/environment';
+import { GetDataService } from '../global/get-data.service';
+import {MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-reconfig',
@@ -10,9 +12,31 @@ import { environment } from '@env/environment';
 export class ReconfigComponent implements OnInit {
 
   version: string = environment.version;
-  machines  = ['machine1', 'machine2', 'machine3'];
+  dataSource: any= [];
+  error: any;
+  displayedColumns: any;
 
-  constructor() { }
+  constructor(private getMachine: GetDataService) { }
 
-  ngOnInit() { }
+  getMachines() {
+    this.getMachine.getData(RTGMachines)
+      .subscribe(
+        (datas: any) => {
+          this.dataSource = new MatTableDataSource(datas);
+          console.log(datas);
+        },
+        (error: string) => {
+          this.error = error;
+          console.log('Error, no data'); // need to full error handle
+        });
+  }
+
+  ngOnInit() {
+    this.getMachines();
+    this.displayedColumns = ['machine'];
+   }
+}
+
+export interface MachinesID {
+  machine: any;
 }

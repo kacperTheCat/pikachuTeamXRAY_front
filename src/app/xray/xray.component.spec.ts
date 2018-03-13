@@ -30,10 +30,10 @@ describe('Component: XrayComponent', () => {
   })
 
   it('should have light value', () => {
-    expect(component.lightValue).not.toEqual(null);
+    expect(component.light).not.toEqual(null);
   })
   it('should have contrast value', () => {
-    expect(component.contrastValue).not.toEqual(null);
+    expect(component.contrast).not.toEqual(null);
   })
   it('should have patients name', () => {
     expect(component.patientName).not.toEqual(null);
@@ -76,10 +76,10 @@ describe('Component: XrayComponent', () => {
 
 
   // describe('checking parmeters change', function () {
-  //   var light = component.lightValue, value = null;
+  //   var light = component.light, value = null;
   //   beforeEach(function () {
-  //     component.lightValue = 120;
-  //     fixture.debugElement.query(By.css('#lightValue'));
+  //     component.light = 120;
+  //     fixture.debugElement.query(By.css('#light'));
   //     light = {
   //       changeValue: function (newValue) {
   //         value = newValue;
@@ -94,14 +94,14 @@ describe('Component: XrayComponent', () => {
   //   })
   // })
   // var params = {
-  //   'lightValue': '55', 
+  //   'light': '55', 
 
   // }
 
-  // it('gets lightValue', function() {
-  //   spyOn(component.lightValue, 'toString').and.callFake(function() {
-  //     expect(component.lightValue).not.toBe(null);
-  //   return params[component.lightValue];
+  // it('gets light', function() {
+  //   spyOn(component.light, 'toString').and.callFake(function() {
+  //     expect(component.light).not.toBe(null);
+  //   return params[component.light];
 
   //   });
   // });

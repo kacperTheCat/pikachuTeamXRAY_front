@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetDataService } from '../global/get-data.service';
 import { jsonUrl } from '../global/address';
+import {MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-logstore',
@@ -15,20 +16,21 @@ export class LogstoreComponent implements OnInit {
   error: any;
   light: any;
   contrast: any;
-  blackWhite: any;
+  negative: any;
   patientName: string;
-  user: any;
+  userName: any;
   imageDate: any;
   imageTime: any;
+  machineID: any;
   tab: any[];
-
+  
   constructor(private getLogData: GetDataService) { }
 
   getDatas() {
     this.getLogData.getData(jsonUrl)
       .subscribe(
         (datas: any) => {
-          this.dataSource = datas;
+          this.dataSource = new MatTableDataSource(datas);
           console.log(datas);
         },
         (error: string) => {
@@ -39,19 +41,24 @@ export class LogstoreComponent implements OnInit {
 
   ngOnInit() {
     this.getDatas();
-    this.displayedColumns = ['light','contrast', 'negative', 'patientName', 'user', 'imageDate', 'imageTime','idMachine'];
+    this.displayedColumns = ['light','contrast', 'negative', 'patientName', 'userName', 'imageDate', 'imageTime','machineID'];
   }
-
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
 }
 
 export interface Logs {
   light: any;
   contrast: any;
-  blackWhite: any;
+  negative: any;
   patientName: string;
-  user: string;
+  userName: string;
   imageDate: string;
   imageTime: string;
+  machineID:any;
 }
 
 

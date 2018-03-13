@@ -24,19 +24,19 @@
 
     <mat-card-actions class="row-wrap">
       <div class="parameter-name">
-        <mat-slider id="lightValue" [max]="50" [min]="-50" thumb-label="thumbLabel" [(ngModel)]="lightValue" vertical="verical"></mat-slider>
-        <label for="lightValue">Light</label>
+        <mat-slider id="light" [max]="50" [min]="-50" thumb-label="thumbLabel" [(ngModel)]="light" vertical="verical"></mat-slider>
+        <label for="light">Light</label>
       </div>
       <div class="parameter-name">
-        <mat-slider id="contrastValue" [max]="255" [min]="-255" thumb-label="thumbLabel" [(ngModel)]="contrastValue" vertical="verical"></mat-slider>
-        <label for="contrastValue">Contrast</label>
+        <mat-slider id="contrast" [max]="255" [min]="-255" thumb-label="thumbLabel" [(ngModel)]="contrast" vertical="verical"></mat-slider>
+        <label for="contrast">Contrast</label>
       </div>
       <div class="content">
         <div class="content__element-label">
-          <mat-checkbox class="black-white-checkbox" [(ngModel)]="blackAndWhite">Black and white</mat-checkbox>
+          <mat-checkbox class="black-white-checkbox" [(ngModel)]="blackAndWhite">Negative</mat-checkbox>
         </div>
         <mat-form-field class="patient-name">
-          <input matInput placeholder="patient name" [(ngModel)]="patientName" required>
+          <input matInput placeholder="Patient name" [(ngModel)]="patientName" required>
         </mat-form-field>
         <button mat-raised-button color="warn" type="submit" (click)="onSubmit(); hideBtn();" [disabled]="!disableBtn">{{titleCptBtn}}</button>
       </div>
