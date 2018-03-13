@@ -76,6 +76,7 @@ export class XrayComponent implements OnInit {
       .subscribe(
         (res: Image) => {
           setTimeout(() => {
+            console.log(res)
             this.comingImage = `data:image/jpeg;base64,${res.base64}`;
           }, 2000);
         }
