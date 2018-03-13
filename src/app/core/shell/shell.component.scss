@@ -29,3 +29,9 @@
 .menu-button {
   margin-right: 1rem;
 }
+
+@media (min-width: 959px) { 
+    .closeButton{
+      visibility: hidden;
+     }
+}

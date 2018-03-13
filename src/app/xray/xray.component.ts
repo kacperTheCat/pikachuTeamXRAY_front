@@ -141,8 +141,8 @@ export class XrayComponent implements OnInit {
         break;
 
       case 'Head':
-        this.lightValue = 75;
-        this.contrastValue = 69;
+        this.lightValue = 30;
+        this.contrastValue = -20;
         this.blackAndWhite = true;
         break;
 
