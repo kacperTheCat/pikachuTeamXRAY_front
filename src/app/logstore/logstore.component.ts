@@ -29,7 +29,6 @@ export class LogstoreComponent implements OnInit {
       .subscribe(
         (datas: any) => {
           this.dataSource = datas;
-          console.log(datas);
         },
         (error: string) => {
           this.error = error;
@@ -39,7 +38,15 @@ export class LogstoreComponent implements OnInit {
 
   ngOnInit() {
     this.getDatas();
-    this.displayedColumns = ['light','contrast', 'negative', 'patientName', 'user', 'imageDate', 'imageTime','idMachine'];
+    this.displayedColumns = [
+      'light',
+      'contrast',
+      'negative',
+      'patientName',
+      'user',
+      'imageDate',
+      'imageTime',
+      'idMachine'];
   }
 
 }

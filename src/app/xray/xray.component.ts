@@ -5,10 +5,10 @@ import { Observable } from 'rxjs/Observable';
 import { finalize } from 'rxjs/operators';
 import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 import { Title } from '@angular/platform-browser';
-// import 'rxjs/add/observable/interval'; // wird
 import { GetDataService, Image } from '../global/get-data.service';
-import { NgModel } from '@angular/forms';
 import { imgAddress, xRayImage } from '../global/address';
+
+
 
 @Component({
   selector: 'app-xray',
@@ -28,15 +28,15 @@ export class XrayComponent implements OnInit {
   error: any;
   disableBtn = true;
   previevInterval: any;
-  lightValue = 50;
-  contrastValue = 50;
-  blackAndWhite = false;
+  lightValue = 0;
+  contrastValue = 0;
+  negative = false;
   patientName: string;
   freshDatas: object;
   audio: any;
   bodyParts = ['Default', 'Leg', 'Head'];
   user: 'user'; // teporary
-  
+
   ngOnInit() { }
 
   getStream() {
@@ -74,10 +74,9 @@ export class XrayComponent implements OnInit {
     this.playXraySound();
     const res = this.getData.postData(xRayImage, this.freshDatas)
       .subscribe(
+        // tslint:disable-next-line:no-shadowed-variable
         (res: Image) => {
-          setTimeout(() => {
             this.comingImage = `data:image/jpeg;base64,${res.base64}`;
-          }, 2000);
         }
       );
   }
@@ -108,7 +107,7 @@ export class XrayComponent implements OnInit {
       constructor(
         protected light: number,
         protected contrast: number,
-        protected blackWhite: boolean,
+        protected negative: boolean,
         protected patientName: string,
         protected user: string) { }
     }
@@ -116,13 +115,12 @@ export class XrayComponent implements OnInit {
     this.freshDatas = new DatasToSend(
       this.lightValue,
       this.contrastValue,
-      this.blackAndWhite,
+      this.negative,
       this.patientName,
       this.user
     );
     // call getXray()
     this.getXray();
-
   }
 
   SelectBodyPart(bodyPartName: any) {
@@ -130,24 +128,25 @@ export class XrayComponent implements OnInit {
       case 'Default':
         this.lightValue = 50;
         this.contrastValue = 50;
-        this.blackAndWhite = false;
+        this.negative = false;
         break;
 
       case 'Leg':
         this.lightValue = 20;
         this.contrastValue = 30;
-        this.blackAndWhite = true;
+        this.negative = true;
         break;
 
       case 'Head':
         this.lightValue = 75;
         this.contrastValue = 69;
-        this.blackAndWhite = true;
+        this.negative = true;
         break;
 
       default:
         break;
     }
   }
+
 
 }

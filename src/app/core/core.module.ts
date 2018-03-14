@@ -10,6 +10,7 @@ import { ShellComponent } from './shell/shell.component';
 import { RouteReusableStrategy } from './route-reusable-strategy';
 import { AuthenticationService } from './authentication/authentication.service';
 import { AuthenticationGuard } from './authentication/authentication.guard';
+// import { AuthenticationGuardUsersType } from './authentication/authenticationUsersType.guard';
 import { I18nService } from './i18n.service';
 import { HttpService } from './http/http.service';
 import { HttpCacheService } from './http/http-cache.service';

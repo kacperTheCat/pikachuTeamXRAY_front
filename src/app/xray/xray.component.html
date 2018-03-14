@@ -24,7 +24,7 @@
 
     <mat-card-actions class="row-wrap">
       <div class="parameter-name">
-        <mat-slider id="lightValue" [max]="50" [min]="-50" thumb-label="thumbLabel" [(ngModel)]="lightValue" vertical="verical"></mat-slider>
+        <mat-slider id="lightValue" [max]="255" [min]="-255" thumb-label="thumbLabel" [(ngModel)]="lightValue" vertical="verical"></mat-slider>
         <label for="lightValue">Light</label>
       </div>
       <div class="parameter-name">
@@ -33,7 +33,7 @@
       </div>
       <div class="content">
         <div class="content__element-label">
-          <mat-checkbox class="black-white-checkbox" [(ngModel)]="blackAndWhite">Black and white</mat-checkbox>
+          <mat-checkbox class="black-white-checkbox" [(ngModel)]="negative">negative</mat-checkbox>
         </div>
         <mat-form-field class="patient-name">
           <input matInput placeholder="patient name" [(ngModel)]="patientName" required>

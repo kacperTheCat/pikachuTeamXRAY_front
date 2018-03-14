@@ -3,15 +3,25 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { Route, extract } from '@app/core';
 import { LogstoreComponent } from './logstore.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+// import { AuthenticationGuardAuditor } from '../core/authentication/authenticationAuditor.guard';
+import { AuthenticationGuardAuditors } from '@app/logstore/authenticationAuditors.guard';
+
 
 const routes: Routes = Route.withShell([
-  { path: '', redirectTo: '/logstore', pathMatch: 'full' },
-  { path: 'logstore', component: LogstoreComponent, data: { title: extract('Logstore') } }
+  {
+    path: 'logstore',
+    component: LogstoreComponent,
+    data: {
+      title: extract('Logstore')
+    }, canActivate: [AuthenticationGuardAuditors]
+  }
 ]);
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: []
+  providers: [AuthenticationGuardAuditors]
 })
 export class LogstoreRoutingModule { }
