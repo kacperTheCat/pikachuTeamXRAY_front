@@ -24,7 +24,7 @@
 
 .mat-card-image {
   max-height: 320px;
-  max-width: 766px;
+  max-width: 320px;
   margin: 0 auto;
 }
 
@@ -88,8 +88,8 @@
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  width: 766px;
-  max-width: 766px;
+  width: 320px;
+  max-width: 300px;
   &__btn {
     margin: 0;
     padding: 0;
@@ -110,6 +110,12 @@
     padding: 0 6rem; // background: #fff;
   }
   .mat-card-image {
-    max-height: 390px;
+    height: 320px;
+    width: 100%;
+    max-width: 766px;
+  }
+  .control {
+    width: 100%;
+    max-width: 766px;
   }
 }
