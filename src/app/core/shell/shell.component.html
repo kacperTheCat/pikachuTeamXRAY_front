@@ -1,7 +1,6 @@
 <div fxFlex>
   <mat-sidenav-container fxFill>
     <mat-sidenav #sidenav [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile" [disableClose]="!isMobile" ngClass.gt-sm="has-border">
-
       <mat-toolbar color="primary">
         <span translate>xRay</span>
         <div fxFlex></div>
@@ -9,9 +8,6 @@
           <button mat-icon-button [matMenuTriggerFor]="userMenu" translate>
             <mat-icon>person</mat-icon>
           </button>
-          <!-- <button mat-icon-button (click)="sidenav.close()" translate class="closeButton">
-            <mat-icon>close</mat-icon>
-          </button> -->
           <mat-menu #userMenu="matMenu">
             <mat-list>
               <mat-list-item>
@@ -35,15 +31,15 @@
             <span translate>About</span>
           </a>
           <mat-divider></mat-divider>
-          <a mat-list-item routerLink="/xray" routerLinkActive="active">
+          <a *ngIf="authenticationService.getUserType() === 'user'" mat-list-item routerLink="/xray" routerLinkActive="active">
             <span translate>xRay panel</span>
           </a>
           <mat-divider></mat-divider>
-          <a mat-list-item routerLink="/logstore" routerLinkActive="active">
+          <a *ngIf="authenticationService.getUserType() === 'auditor'" mat-list-item routerLink="/logstore" routerLinkActive="active">
             <span translate>Log Store</span>
           </a>
           <mat-divider></mat-divider>
-          <a mat-list-item routerLink="/reconfig" routerLinkActive="active">
+          <a *ngIf="authenticationService.getUserType() === 'admin'" mat-list-item routerLink="/reconfig" routerLinkActive="active">
             <span translate>Change the machine</span>
           </a>
           <mat-divider></mat-divider>
@@ -52,7 +48,7 @@
     </mat-sidenav>
     <mat-sidenav-content>
       <mat-toolbar color="primary" class="mat-elevation-z6">
-        <button class="menu-button" mat-icon-button (click)="sidenav.toggle()" >
+        <button class="menu-button" mat-icon-button (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
         <span>{{title}}</span>
@@ -60,5 +56,4 @@
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
-
 </div>
