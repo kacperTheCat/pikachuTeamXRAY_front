@@ -59,7 +59,6 @@ export class AuthenticationService {
       (res: any) => {
           if(res.status === 'OK') {
             data.permissions = res.permissions;
-            console.log(data);
             this.setCredentials(data, context.remember);
           } else {console.log(res.status);}
 

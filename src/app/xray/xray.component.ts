@@ -74,7 +74,8 @@ export class XrayComponent implements OnInit {
       .subscribe(
         // tslint:disable-next-line:no-shadowed-variable
         (res: Image) => {
-            this.comingImage = `data:image/jpeg;base64,${res.base64}`;
+          this.comingImage = `data:image/jpeg;base64,${res.base64}`;
+          console.log(this.freshDatas);
         }
       );
   }
@@ -117,8 +118,14 @@ export class XrayComponent implements OnInit {
       this.patientName,
       this.userName
     );
+    // validation
+    if (this.patientName === undefined || this.patientName === '') {
+      return false;
+    } else {
+      this.getXray();
+      this.hideBtn();
+    }
 
-    this.getXray();
   }
 
   SelectBodyPart(bodyPartName: any) {
