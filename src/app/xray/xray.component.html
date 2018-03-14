@@ -13,7 +13,8 @@
       </mat-card-content>
       <mat-card-actions class="control">
         <button mat-raised-button class="control__btn" color="primary" (click)="getStream()">{{titleBtn}}</button>
-        <button mat-raised-button class="control__btn control__btn--warn" color="warn" type="submit" (click)="onSubmit(); hideBtn();" [disabled]="!disableBtn">
+        <button mat-raised-button class="control__btn control__btn--warn" color="warn" type="submit" (click)="onSubmit(); hideBtn();"
+          [disabled]="!disableBtn">
           {{titleCptBtn}}
         </button>
         <!-- hidebtn() have to be part onSubmit() -->
