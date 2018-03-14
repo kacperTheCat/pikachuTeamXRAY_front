@@ -9,9 +9,9 @@
           <button mat-icon-button [matMenuTriggerFor]="userMenu" translate>
             <mat-icon>person</mat-icon>
           </button>
-          <button mat-icon-button (click)="sidenav.close()" translate class="closeButton">
+          <!-- <button mat-icon-button (click)="sidenav.close()" translate class="closeButton">
             <mat-icon>close</mat-icon>
-          </button>
+          </button> -->
           <mat-menu #userMenu="matMenu">
             <mat-list>
               <mat-list-item>
@@ -24,7 +24,7 @@
           </mat-menu>
         </div>
       </mat-toolbar>
-      <nav>
+      <nav (click)="sidenav.close()">
         <mat-list>
           <mat-divider></mat-divider>
           <a mat-list-item routerLink="/home" routerLinkActive="active">
@@ -52,7 +52,7 @@
     </mat-sidenav>
     <mat-sidenav-content>
       <mat-toolbar color="primary" class="mat-elevation-z6">
-        <button class="menu-button" mat-icon-button (click)="sidenav.toggle()" fxHide.gt-sm>
+        <button class="menu-button" mat-icon-button (click)="sidenav.toggle()" >
           <mat-icon>menu</mat-icon>
         </button>
         <span>{{title}}</span>
