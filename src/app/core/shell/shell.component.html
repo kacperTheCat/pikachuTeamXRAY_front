@@ -1,12 +1,16 @@
 <div fxFlex>
   <mat-sidenav-container fxFill>
-    <mat-sidenav  #sidenav [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile" [disableClose]="!isMobile" ngClass.gt-sm="has-border">
+    <mat-sidenav #sidenav [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile" [disableClose]="!isMobile" ngClass.gt-sm="has-border">
+
       <mat-toolbar color="primary">
         <span translate>xRay</span>
         <div fxFlex></div>
         <div>
           <button mat-icon-button [matMenuTriggerFor]="userMenu" translate>
             <mat-icon>person</mat-icon>
+          </button>
+          <button mat-icon-button (click)="sidenav.close()" translate class="closeButton">
+            <mat-icon>close</mat-icon>
           </button>
           <mat-menu #userMenu="matMenu">
             <mat-list>
@@ -18,16 +22,6 @@
             </mat-list>
             <button mat-menu-item (click)="logout()" translate>Logout</button>
           </mat-menu>
-        </div>
-        <div>
-          <!-- <button mat-icon-button [matMenuTriggerFor]="languageMenu">
-            <mat-icon>language</mat-icon>
-          </button>
-          <mat-menu #languageMenu="matMenu">
-            <button mat-menu-item *ngFor="let language of languages" (click)="setLanguage(language)">
-              {{language}}
-            </button>
-          </mat-menu> internalizacja może przyda się później-->
         </div>
       </mat-toolbar>
       <nav>

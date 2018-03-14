@@ -1,9 +1,9 @@
 <div class="container">
   <mat-card class="content">
     <h1>
-      <mat-card-title translate>Reconfig the machine</mat-card-title>
+      <mat-card-title translate>Select the machine</mat-card-title>
     </h1>
-    <mat-card-content>
+    <!-- <mat-card-content>
       <mat-form-field>
         <mat-select placeholder="Select Machine">
           <mat-option  *ngFor="let machine of machines" [value]="machine">
@@ -11,6 +11,17 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-    </mat-card-content>
+    </mat-card-content> -->
+
+    <mat-table #table [dataSource]="dataSource">
+      <!-- Machine Column -->
+      <ng-container matColumnDef="machine">
+        <mat-header-cell *matHeaderCellDef> Machine </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.machine}} </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
   </mat-card>
 </div>

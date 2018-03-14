@@ -10,10 +10,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { GetDataService } from '../global/get-data.service';
 import {FormsModule} from '@angular/forms';
 
-
-
-
-
 @NgModule({
   imports: [
     CommonModule,
