@@ -6,7 +6,8 @@ import { LogstoreComponent } from './logstore.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 // import { AuthenticationGuardAuditor } from '../core/authentication/authenticationAuditor.guard';
-import { AuthenticationGuardAuditors } from '@app/logstore/authenticationAuditors.guard';
+import { AuthenticationGuardAuditors } from '../core/authentication/authenticationAuditors.guard';
+
 
 
 const routes: Routes = Route.withShell([

@@ -19,7 +19,7 @@ export class AuthenticationGuardUsersType implements CanActivate {
       return true;
     } else {
       log.debug('Not authenticated, redirecting...');
-      this.router.navigate(['/about'], { replaceUrl: true });
+      this.router.navigate(['/'], { replaceUrl: true });
       return false;
     }
 

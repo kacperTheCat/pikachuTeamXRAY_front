@@ -20,7 +20,7 @@ export class XrayComponent implements OnInit {
 
   constructor(private getData: GetDataService) { }
 
-  comingImage: String = 'https://loremflickr.com/320/240';
+  comingImage: String = 'assets/placeholder.webp';
   titleBtn = 'Preview';
   titleCptBtn: any = 'Capture';
   error: any;
@@ -32,7 +32,7 @@ export class XrayComponent implements OnInit {
   patientName: string;
   freshDatas: object;
   audio: any;
-  bodyParts = ['Default', 'Leg', 'Head'];
+  bodyParts = ['Default', 'Bones', 'Joints'];
   userName: 'userName'; // teporary
 
   ngOnInit() { }
@@ -124,20 +124,20 @@ export class XrayComponent implements OnInit {
   SelectBodyPart(bodyPartName: any) {
     switch (bodyPartName) {
       case 'Default':
-        this.light = 50;
-        this.contrast = 50;
+        this.light = 0;
+        this.contrast = 0;
         this.negative = false;
         break;
 
-      case 'Leg':
-        this.light = 20;
+      case 'Bones':
+        this.light = 70;
         this.contrast = 30;
         this.negative = true;
         break;
 
-      case 'Head':
-        this.light = 30;
-        this.contrast = -20;
+      case 'Joints':
+        this.light = -20;
+        this.contrast = -10;
         this.negative = true;
         break;
 
