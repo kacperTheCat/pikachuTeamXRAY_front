@@ -1,46 +1,115 @@
 .container {
   margin: 1rem;
 }
+
 .mat-card-actions {
   display: flex;
-  justify-content: center
+  justify-content: center;
 }
+
 .mat-card {
+  padding: 0 0 1.5rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  &-content {
+    margin-bottom: 0;
+    text-align: center;
+  }
+  &-actions {
+    margin-bottom: 0;
+  }
 }
+
 .mat-card-image {
-  max-height: 500px;
-  max-width: 500px;
+  max-height: 320px;
+  max-width: 766px;
+  margin: 0 auto;
 }
-.mat-card-header{
-  margin-bottom: 1.5rem;
+
+.mat-card-header {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
 }
+
 .row-wrap {
   display: flex;
   align-items: center;
 }
+
 .content {
   margin-left: 2rem;
   display: flex;
   flex-direction: column;
-
-    &__element-label {
-      display: flex;
-      justify-content: space-between;
-    }
+  justify-content: space-around;
+  align-items: center;
 }
+
 .patient-name {
   margin: 0;
   padding-bottom: 1rem;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+  &__input {
+    margin: 0 1rem;
+    width: 100%;
+  }
 }
+
 .parameter {
-  display: block;
-  padding: 20px;
+  display: block; // padding: 20px;
 }
-.parameter-name{
+
+.parameter-name {
   display: flex;
   flex-direction: column;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.negative-check {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.settings {
+  top: -20px;
+}
+
+.control {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  width: 766px;
+  max-width: 766px;
+  &__btn {
+    margin: 0;
+    padding: 0;
+    width: 48%;
+    height: 40px;
+    &--warn {
+      margin: 0;
+    }
+  }
+}
+
+@media (min-width: 1100px) {
+  .mat-card {
+    padding-left: 1.5rem;
+    flex-direction: row;
+  }
+  .row-params {
+    padding: 0 6rem; // background: #fff;
+  }
+  .mat-card-image {
+    max-height: 390px;
+  }
 }
