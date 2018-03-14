@@ -31,6 +31,7 @@ export class LogstoreComponent implements OnInit {
       .subscribe(
         (datas: any) => {
           this.dataSource = new MatTableDataSource(datas);
+          console.log(datas);
         },
         (error: string) => {
           this.error = error;

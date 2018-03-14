@@ -10,7 +10,6 @@
       <img mat-card-image [src]='comingImage' alt="Photo of a random cat">
       <mat-card-actions>
         <button mat-raised-button color="primary" (click)="getStream()">{{titleBtn}}</button>
-        <!-- <button mat-button color="warn" (click)="captureImage(); hideBtn()" [disabled]="!disableBtn">{{titleCptBtn}}</button> -->
       </mat-card-actions>
     </mat-card-content>
 
@@ -25,7 +24,7 @@
     <mat-card-actions class="row-wrap">
       <div class="parameter-name">
 
-        <mat-slider color="primary" id="light" [max]="255" [min]="-255" thumb-label="thumbLabel" [(ngModel)]="lightValue" vertical="verical"></mat-slider>
+        <mat-slider id="light" [max]="255" [min]="-255" thumb-label="thumbLabel" [(ngModel)]="light" vertical="verical"></mat-slider>
         <label for="light">Light</label>
 
       </div>
@@ -35,7 +34,7 @@
       </div>
       <div class="content">
         <div class="content__element-label">
-          <mat-checkbox class="black-white-checkbox" [(ngModel)]="negative">negative</mat-checkbox>
+          <mat-checkbox class="black-white-checkbox" [(ngModel)]="negative">Negative</mat-checkbox>
         </div>
         <mat-form-field class="patient-name">
           <input matInput placeholder="Patient name" [(ngModel)]="patientName" required>
