@@ -3,25 +3,17 @@
     <h1>
       <mat-card-title translate>Select the machine</mat-card-title>
     </h1>
-    <!-- <mat-card-content>
+    <form>
       <mat-form-field>
-        <mat-select placeholder="Select Machine">
-          <mat-option  *ngFor="let machine of machines" [value]="machine">
-            {{ machine }}
+        <mat-select placeholder="Available machines" [(ngModel)]="selectedValue" name="food">
+          <mat-option *ngFor="let machine of dataSource" [value]="machine.value">
+            {{machine.machine}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-    </mat-card-content> -->
-
-    <mat-table #table [dataSource]="dataSource">
-      <!-- Machine Column -->
-      <ng-container matColumnDef="machine">
-        <mat-header-cell *matHeaderCellDef> Machine </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.machine}} </mat-cell>
-      </ng-container>
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-
+    </form>
+    <mat-card-actions class="control">
+      <button mat-raised-button color="warn" type="submit">{{titleSaveButton}}</button>
+    </mat-card-actions>
   </mat-card>
 </div>

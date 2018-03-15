@@ -7,6 +7,7 @@ import { MaterialModule } from '@app/material.module';
 import {  ReconfigRoutingModule } from './reconfig-routing.module';
 import { ReconfigComponent } from './reconfig.component';
 import {MatTableModule} from '@angular/material/table';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import {MatTableModule} from '@angular/material/table';
     FlexLayoutModule,
     MaterialModule,
     ReconfigRoutingModule,
-    MatTableModule
+    MatTableModule,
+    FormsModule
   ],
   declarations: [
     ReconfigComponent

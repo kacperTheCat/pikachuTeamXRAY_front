@@ -14,15 +14,14 @@ export class LogstoreComponent implements OnInit {
   dataSource: any = [];
   displayedColumns: any;
   error: any;
-  light: any;
-  contrast: any;
-  negative: any;
+  light: number;
+  contrast: number;
+  negative: boolean;
   patientName: string;
-  userName: any;
+  userName: string;
   imageDate: any;
   imageTime: any;
   machineID: any;
-  tab: any[];
 
   constructor(private getLogData: GetDataService) { }
 
@@ -58,17 +57,6 @@ export class LogstoreComponent implements OnInit {
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
-}
-
-export interface Logs {
-  light: any;
-  contrast: any;
-  negative: any;
-  patientName: string;
-  userName: string;
-  imageDate: string;
-  imageTime: string;
-  machineID: any;
 }
 
 
