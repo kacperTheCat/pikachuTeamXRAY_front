@@ -18,33 +18,35 @@ import { imgAddress, xRayImage } from '../global/address';
 
 export class XrayComponent implements OnInit {
 
+
   constructor(private getData: GetDataService) { }
 
+
   comingImage: String = 'https://loremflickr.com/320/240';
-  titleBtn = 'Preview';
-  titleCptBtn: any = 'Capture';
+  titleBtn = 'preview';
+  titleCptBtn: any = 'capture';
   error: any;
   disableBtn = true;
   previevInterval: any;
-  light = 50;
-  contrast = 50;
-  negative = false;
+  lightValue = 50;
+  contrastValue = 50;
+  blackAndWhite = false;
   patientName: string;
   freshDatas: object;
   audio: any;
   bodyParts = ['Default', 'Leg', 'Head'];
-  userName: 'userName'; // teporary
+  user: 'user'; // teporary
   
   ngOnInit() { }
 
   getStream() {
-    if (this.titleBtn === 'Preview') {
+    if (this.titleBtn === 'preview') {
       this.previevInterval = setInterval(() => {
         this.getImage();
       }, 1000);
-      this.titleBtn = 'Stop preview';
+      this.titleBtn = 'stop prewiev';
     } else {
-      this.titleBtn = 'Preview';
+      this.titleBtn = 'preview';
       clearInterval(this.previevInterval); // prop to change
     }
   }
@@ -87,6 +89,7 @@ export class XrayComponent implements OnInit {
   }
 
   hideBtn() {
+    if (this.disableBtn) {
     this.disableBtn = false;
     this.titleCptBtn = 10;
     const inter = setInterval(() => {
@@ -100,47 +103,50 @@ export class XrayComponent implements OnInit {
       this.titleCptBtn = 'capture';
     }, 10000);
   }
+  }
 
   onSubmit() {
+    if (this.disableBtn) {
     this.setCapturebtn();
     class DatasToSend {
       constructor(
         protected light: number,
         protected contrast: number,
-        protected negative: boolean,
+        protected blackWhite: boolean,
         protected patientName: string,
-        protected userName: string) { }
+        protected user: string) { }
     }
     // create new obj with datas from our inputs
     this.freshDatas = new DatasToSend(
-      this.light,
-      this.contrast,
-      this.negative,
+      this.lightValue,
+      this.contrastValue,
+      this.blackAndWhite,
       this.patientName,
-      this.userName
+      this.user
     );
-    
+    // call getXray()
     this.getXray();
+  }
   }
 
   SelectBodyPart(bodyPartName: any) {
     switch (bodyPartName) {
       case 'Default':
-        this.light = 50;
-        this.contrast = 50;
-        this.negative = false;
+        this.lightValue = 50;
+        this.contrastValue = 50;
+        this.blackAndWhite = false;
         break;
 
       case 'Leg':
-        this.light = 20;
-        this.contrast = 30;
-        this.negative = true;
+        this.lightValue = 20;
+        this.contrastValue = 30;
+        this.blackAndWhite = true;
         break;
 
       case 'Head':
-        this.light = 30;
-        this.contrast = -20;
-        this.negative = true;
+        this.lightValue = 30;
+        this.contrastValue = -20;
+        this.blackAndWhite = true;
         break;
 
       default:
