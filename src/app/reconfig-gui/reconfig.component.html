@@ -6,12 +6,13 @@
     <form>
       <mat-form-field>
         <mat-select placeholder="Available machines" [(ngModel)]="selectedValue" name="food">
-          <mat-option *ngFor="let machine of dataSource" [value]="machine.value">
+          <mat-option *ngFor="let machine of dataSource; let i = index" [value]="i">
             {{machine.machine}}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </form>
+    <p> Selected value: {{selectedValue | json}} </p>
     <mat-card-actions class="control">
       <button mat-raised-button color="warn" type="submit">{{titleSaveButton}}</button>
     </mat-card-actions>

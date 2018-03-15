@@ -15,7 +15,7 @@ export class ReconfigComponent implements OnInit {
   dataSource: any= [];
   error: any;
   titleSaveButton = "Save"; 
-  selectedValue: string;
+  selectedValue: number;
 
   constructor(private getMachine: GetDataService) { }
   
@@ -23,7 +23,7 @@ export class ReconfigComponent implements OnInit {
     this.getMachine.getData(RTGMachines)
       .subscribe(
         (datas: any) => {
-          this.dataSource = datas;     
+          this.dataSource = datas;    
         },
         (error: string) => {
           this.error = error;
@@ -34,5 +34,5 @@ export class ReconfigComponent implements OnInit {
   ngOnInit() {
      this.getMachines();
    }
-
+  
 }
