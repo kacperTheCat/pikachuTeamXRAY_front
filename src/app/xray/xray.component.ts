@@ -21,7 +21,7 @@ export class XrayComponent implements OnInit {
   constructor(private getData: GetDataService) { }
 
   comingImage: String = 'assets/placeholder.webp';
-  titleBtn = 'Preview';
+  titleBtn = 'Preview'; // it should be a static var
   titleCptBtn: any = 'Capture';
   error: any;
   disableBtn = true;
@@ -33,7 +33,7 @@ export class XrayComponent implements OnInit {
   freshDatas: object;
   audio: any;
   bodyParts = ['Default', 'Bones', 'Joints'];
-  userName: 'userName'; // teporary
+  userName = 'doctor'; // teporary
 
   ngOnInit() { }
 
@@ -75,14 +75,14 @@ export class XrayComponent implements OnInit {
         // tslint:disable-next-line:no-shadowed-variable
         (res: Image) => {
           this.comingImage = `data:image/jpeg;base64,${res.base64}`;
-          console.log(this.freshDatas);
+          // console.log(this.freshDatas);
         }
       );
   }
 
   setCapturebtn() {
     clearInterval(this.previevInterval);
-    this.titleBtn = 'preview'; // it shoud hide preview btn?
+    this.titleBtn = 'Preview'; // it shoud hide preview btn?
   }
 
   hideBtn() {
@@ -96,7 +96,7 @@ export class XrayComponent implements OnInit {
     }, 1000);
     setTimeout(() => {
       this.disableBtn = true;
-      this.titleCptBtn = 'capture';
+      this.titleCptBtn = 'Capture';
     }, 10000);
   }
 
@@ -122,6 +122,7 @@ export class XrayComponent implements OnInit {
     if (this.patientName === undefined || this.patientName === '') {
       return false;
     } else {
+      // console.log(this.freshDatas);
       this.getXray();
       this.hideBtn();
     }

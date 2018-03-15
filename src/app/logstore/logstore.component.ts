@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { GetDataService } from '../global/get-data.service';
+import { Component, OnInit, Inject } from '@angular/core';
+import { GetDataService, Image } from '../global/get-data.service';
 import { jsonUrl } from '../global/address';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-logstore',
@@ -21,17 +21,15 @@ export class LogstoreComponent implements OnInit {
   userName: any;
   imageDate: any;
   imageTime: any;
-  machineID: any;
   tab: any[];
-
-  constructor(private getLogData: GetDataService) { }
+  img: string;
+  constructor(private getLogData: GetDataService, public dialog: MatDialog) { }
 
   getDatas() {
     this.getLogData.getData(jsonUrl)
       .subscribe(
         (datas: any) => {
           this.dataSource = new MatTableDataSource(datas);
-          console.log(datas);
         },
         (error: string) => {
           this.error = error;
@@ -50,25 +48,42 @@ export class LogstoreComponent implements OnInit {
       'userName',
       'imageDate',
       'imageTime',
-      'machineID'
+      'xRayImageName'
     ];
   }
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    filterValue.trim(); // Remove whitespace
+    filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
-}
+  openDialog(imgSrc: string) {
+    this.getLogData.getData(`http://localhost:61182/api/auditlogs/${imgSrc}`)
+    .subscribe(
+      (img: Image) => {
+        console.log(imgSrc);
+        this.dialog.open(PhotoDialogComponent, {
+          data: {
+            img: `data:image/jpeg;base64,${img.base64}`
+          }
+        });
 
-export interface Logs {
-  light: any;
-  contrast: any;
-  negative: any;
-  patientName: string;
-  userName: string;
-  imageDate: string;
-  imageTime: string;
-  machineID: any;
+      },
+      (error: string) => {
+        this.error = error;
+        console.log(imgSrc);
+        console.log('server err'); // need to full error handle
+      });
+
+
+  }
+}
+@Component({
+  selector: 'app-photo-dialog.component',
+  templateUrl: 'photo-dialog.component.html',
+})
+export class PhotoDialogComponent {
+  img:string;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 }
 
 
