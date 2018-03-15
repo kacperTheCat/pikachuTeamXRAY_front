@@ -1,44 +1,49 @@
 <div class="container">
   <mat-card class="">
-
-    <mat-card-header>
-      <!-- tutaj jakie informacje -->
-      <h2 class="patient-name">Patient: {{ patientName }}</h2>
-    </mat-card-header>
-
-    <mat-card-content>
-      <img mat-card-image [src]='comingImage' alt="Photo of a random cat">
-      <mat-card-actions>
-        <button mat-raised-button color="accent" (click)="getStream()">{{titleBtn}}</button>
-        <!-- <button mat-button color="warn" (click)="captureImage(); hideBtn()" [disabled]="!disableBtn">{{titleCptBtn}}</button> -->
+    <mat-card-actions cols="6" class="column">
+      <mat-card-header>
+        <h2 class="patient-name">Patient:
+          <mat-form-field class="patient-name__input">
+            <input matInput [(ngModel)]="patientName" required>
+          </mat-form-field>
+        </h2>
+      </mat-card-header>
+      <mat-card-content>
+        <img mat-card-image [src]='comingImage' alt="Photo of a random cat">
+      </mat-card-content>
+      <mat-card-actions class="control">
+        <button mat-raised-button class="control__btn" color="primary" (click)="getStream()">{{titleBtn}}</button>
+        <button mat-raised-button class="control__btn control__btn--warn" color="warn" type="submit" (click)="onSubmit();"
+          [disabled]="!disableBtn">
+          {{titleCptBtn}}
+        </button>
+        <!-- hidebtn() have to be part onSubmit() -->
       </mat-card-actions>
-    </mat-card-content>
+    </mat-card-actions>
+    <mat-card-actions class="row-params">
 
-    <mat-form-field>
-      <mat-select placeholder="Select body part">
-        <mat-option (click)="SelectBodyPart(part)" *ngFor="let part of bodyParts" [value]="part">
-          {{ part }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-card-actions class="row-wrap">
-      <div class="parameter-name">
-        <mat-slider id="light" [max]="50" [min]="-50" thumb-label="thumbLabel" [(ngModel)]="light" vertical="verical"></mat-slider>
-        <label for="light">Light</label>
-      </div>
-      <div class="parameter-name">
-        <mat-slider id="contrast" [max]="255" [min]="-255" thumb-label="thumbLabel" [(ngModel)]="contrast" vertical="verical"></mat-slider>
-        <label for="contrast">Contrast</label>
-      </div>
-      <div class="content">
-        <div class="content__element-label">
-          <mat-checkbox class="black-white-checkbox" [(ngModel)]="blackAndWhite">Negative</mat-checkbox>
+      <mat-card-actions>
+        <div class="parameter-name">
+          <mat-slider color="primary" id="light" [max]="255" [min]="-255" thumb-label="thumbLabel" [(ngModel)]="light" vertical="verical"></mat-slider>
+          <label for="light">Light</label>
         </div>
-        <mat-form-field class="patient-name">
-          <input matInput placeholder="Patient name" [(ngModel)]="patientName" required>
+        <div class="parameter-name">
+          <mat-slider color="primary" id="contrast" [max]="255" [min]="-255" thumb-label="thumbLabel" [(ngModel)]="contrast" vertical="verical"></mat-slider>
+          <label for="contrast">Contrast</label>
+        </div>
+      </mat-card-actions>
+      <div class="content">
+        <mat-form-field class="settings">
+          <mat-select placeholder="Settings">
+            <mat-option (click)="SelectBodyPart(part)" *ngFor="let part of bodyParts" [value]="part">
+              {{ part }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
-        <button mat-raised-button color="warn" type="submit" (click)="onSubmit(); hideBtn();" [disabled]="!disableBtn">{{titleCptBtn}}</button>
+        <div class="content__element-label">
+          <mat-checkbox class="negative-check" [(ngModel)]="negative">Negative</mat-checkbox>
+        </div>
+
       </div>
     </mat-card-actions>
   </mat-card>

@@ -5,10 +5,10 @@ import { Observable } from 'rxjs/Observable';
 import { finalize } from 'rxjs/operators';
 import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 import { Title } from '@angular/platform-browser';
-// import 'rxjs/add/observable/interval'; // wird
 import { GetDataService, Image } from '../global/get-data.service';
-import { NgModel } from '@angular/forms';
 import { imgAddress, xRayImage } from '../global/address';
+
+
 
 @Component({
   selector: 'app-xray',
@@ -21,22 +21,21 @@ export class XrayComponent implements OnInit {
 
   constructor(private getData: GetDataService) { }
 
-
-  comingImage: String = 'https://loremflickr.com/320/240';
-  titleBtn = 'preview';
-  titleCptBtn: any = 'capture';
+  comingImage: String = 'assets/placeholder.webp';
+  titleBtn = 'Preview';
+  titleCptBtn: any = 'Capture';
   error: any;
   disableBtn = true;
   previevInterval: any;
-  lightValue = 50;
-  contrastValue = 50;
-  blackAndWhite = false;
+  light = 0;
+  contrast = 0;
+  negative = false;
   patientName: string;
   freshDatas: object;
   audio: any;
-  bodyParts = ['Default', 'Leg', 'Head'];
-  user: 'user'; // teporary
-  
+  bodyParts = ['Default', 'Bones', 'Joints'];
+  userName: 'userName'; // teporary
+
   ngOnInit() { }
 
   getStream() {
@@ -74,11 +73,10 @@ export class XrayComponent implements OnInit {
     this.playXraySound();
     const res = this.getData.postData(xRayImage, this.freshDatas)
       .subscribe(
+        // tslint:disable-next-line:no-shadowed-variable
         (res: Image) => {
-          setTimeout(() => {
-            console.log(res)
-            this.comingImage = `data:image/jpeg;base64,${res.base64}`;
-          }, 2000);
+          this.comingImage = `data:image/jpeg;base64,${res.base64}`;
+          console.log(this.freshDatas);
         }
       );
   }
@@ -124,34 +122,41 @@ export class XrayComponent implements OnInit {
       this.patientName,
       this.user
     );
-    // call getXray()
-    this.getXray();
+    // validation
+    if (this.patientName === undefined || this.patientName === '') {
+      return false;
+    } else {
+      this.getXray();
+      this.hideBtn();
+    }
+
   }
   }
 
   SelectBodyPart(bodyPartName: any) {
     switch (bodyPartName) {
       case 'Default':
-        this.lightValue = 50;
-        this.contrastValue = 50;
-        this.blackAndWhite = false;
+        this.light = 0;
+        this.contrast = 0;
+        this.negative = false;
         break;
 
-      case 'Leg':
-        this.lightValue = 20;
-        this.contrastValue = 30;
-        this.blackAndWhite = true;
+      case 'Bones':
+        this.light = 70;
+        this.contrast = 30;
+        this.negative = true;
         break;
 
-      case 'Head':
-        this.lightValue = 30;
-        this.contrastValue = -20;
-        this.blackAndWhite = true;
+      case 'Joints':
+        this.light = -20;
+        this.contrast = -10;
+        this.negative = true;
         break;
 
       default:
         break;
     }
   }
+
 
 }

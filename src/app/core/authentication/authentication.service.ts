@@ -6,6 +6,7 @@ import { GetDataService } from '../../global/get-data.service';
 
 export interface Credentials {
   // Customize received credentials here
+  permissions: string;
   username: string;
   token: string;
 }
@@ -13,6 +14,7 @@ export interface Credentials {
 export interface LoginContext {
   username: string;
   password: string;
+  permissions: string;
   remember?: boolean;
 }
 
@@ -43,6 +45,7 @@ export class AuthenticationService {
     // Replace by proper authentication call
     const data = {
       username: context.username,
+      permissions: context.permissions,
       token: '123456'
     };
     class NecesseryDatas {
@@ -55,11 +58,9 @@ export class AuthenticationService {
     .subscribe(
       (res: any) => {
           if(res.status === 'OK') {
+            data.permissions = res.permissions;
             this.setCredentials(data, context.remember);
-          }
-          else {
-            console.log(res.status)
-          }
+          } else {console.log(res.status);}
 
       }
       );
@@ -82,7 +83,7 @@ export class AuthenticationService {
    * Checks is the user is authenticated.
    * @return {boolean} True if the user is authenticated.
    */
-  isAuthenticated(): boolean {
+  isAuthenticated() {
     return !!this.credentials;
   }
 
@@ -93,7 +94,10 @@ export class AuthenticationService {
   get credentials(): Credentials | null {
     return this._credentials;
   }
-
+  getUserType() {
+    // console.log(this.credentials.permissions);
+    return this.credentials.permissions;
+  }
   /**
    * Sets the user credentials.
    * The credentials may be persisted across sessions by setting the `remember` parameter to true.

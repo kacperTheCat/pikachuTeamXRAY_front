@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetDataService } from '../global/get-data.service';
 import { jsonUrl } from '../global/address';
-import {MatTableDataSource} from '@angular/material';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-logstore',
@@ -23,7 +23,7 @@ export class LogstoreComponent implements OnInit {
   imageTime: any;
   machineID: any;
   tab: any[];
-  
+
   constructor(private getLogData: GetDataService) { }
 
   getDatas() {
@@ -41,7 +41,17 @@ export class LogstoreComponent implements OnInit {
 
   ngOnInit() {
     this.getDatas();
-    this.displayedColumns = ['light','contrast', 'negative', 'patientName', 'userName', 'imageDate', 'imageTime','machineID'];
+
+    this.displayedColumns = [
+      'light',
+      'contrast',
+      'negative',
+      'patientName',
+      'userName',
+      'imageDate',
+      'imageTime',
+      'machineID'
+    ];
   }
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -58,7 +68,7 @@ export interface Logs {
   userName: string;
   imageDate: string;
   imageTime: string;
-  machineID:any;
+  machineID: any;
 }
 
 
