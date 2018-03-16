@@ -26,7 +26,6 @@ export class LogstoreComponent implements OnInit {
 
   constructor(private getLogData: GetDataService, public dialog: MatDialog) { }
 
-
   getDatas() {
     this.getLogData.getData(logsApi)
       .subscribe(
@@ -42,7 +41,6 @@ export class LogstoreComponent implements OnInit {
 
   ngOnInit() {
     this.getDatas();
-
     this.displayedColumns = [
       'light',
       'contrast',
@@ -70,7 +68,6 @@ export class LogstoreComponent implements OnInit {
               img: `data:image/jpeg;base64,${img.base64}`
             }
           });
-
         },
         (error: string) => {
           this.error = error;
@@ -78,7 +75,6 @@ export class LogstoreComponent implements OnInit {
         });
   }
 }
-
 
 @Component({
   selector: 'app-photo-dialog.component',
@@ -88,4 +84,3 @@ export class PhotoDialogComponent {
   img: string;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 }
-

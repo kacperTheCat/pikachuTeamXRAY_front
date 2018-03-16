@@ -45,15 +45,6 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  // setLanguage(language: string) {
-  //   this.i18nService.language = language;
-  // }
-  // get currentLanguage(): string {
-  //   return this.i18nService.language;
-  // }
-  // get languages(): string[] {
-  //   return this.i18nService.supportedLanguages;
-  // }
   private createForm() {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
