@@ -39,13 +39,13 @@ export class XrayComponent implements OnInit {
   ngOnInit() { }
 
   getStream() {
-    if (this.titleBtn === 'preview') {
+    if (this.titleBtn === 'Preview') {
       this.previevInterval = setInterval(() => {
         this.getImage();
       }, 1000);
-      this.titleBtn = 'stop prewiev';
+      this.titleBtn = 'Stop prewiev';
     } else {
-      this.titleBtn = 'preview';
+      this.titleBtn = 'Preview';
       clearInterval(this.previevInterval); // prop to change
     }
   }
@@ -76,7 +76,6 @@ export class XrayComponent implements OnInit {
         // tslint:disable-next-line:no-shadowed-variable
         (res: Image) => {
           this.comingImage = `data:image/jpeg;base64,${res.base64}`;
-          // console.log(this.freshDatas);
         }
       );
   }
@@ -88,50 +87,48 @@ export class XrayComponent implements OnInit {
 
   hideBtn() {
     if (this.disableBtn) {
-    this.disableBtn = false;
-    this.titleCptBtn = 10;
-    const inter = setInterval(() => {
-      this.titleCptBtn--;
-      if (this.titleCptBtn === 0) {
-        clearInterval(inter);
-      }
-    }, 1000);
-    setTimeout(() => {
-      this.disableBtn = true;
-      this.titleCptBtn = 'Capture';
-    }, 10000);
-  }
+      this.disableBtn = false;
+      this.titleCptBtn = 10;
+      const inter = setInterval(() => {
+        this.titleCptBtn--;
+        if (this.titleCptBtn === 0) {
+          clearInterval(inter);
+        }
+      }, 1000);
+      setTimeout(() => {
+        this.disableBtn = true;
+        this.titleCptBtn = 'Capture';
+      }, 10000);
+    }
   }
 
   onSubmit() {
     if (this.disableBtn) {
-    this.setCapturebtn();
-    class DatasToSend {
-      constructor(
-        protected light: number,
-        protected contrast: number,
-        protected blackWhite: boolean,
-        protected patientName: string,
-        protected user: string) { }
+      this.setCapturebtn();
+      class DatasToSend {
+        constructor(
+          protected light: number,
+          protected contrast: number,
+          protected negative: boolean,
+          protected patientName: string,
+          protected userName: string) { }
+      }
+      // create new obj with datas from our inputs
+      this.freshDatas = new DatasToSend(
+        this.light,
+        this.contrast,
+        this.negative,
+        this.patientName,
+        this.userName
+      );
+      // validation
+      if (this.patientName === undefined || this.patientName === '') {
+        return false;
+      } else {
+        this.getXray();
+        this.hideBtn();
+      }
     }
-    // create new obj with datas from our inputs
-    this.freshDatas = new DatasToSend(
-      this.lightValue,
-      this.contrastValue,
-      this.blackAndWhite,
-      this.patientName,
-      this.user
-    );
-    // validation
-    if (this.patientName === undefined || this.patientName === '') {
-      return false;
-    } else {
-      // console.log(this.freshDatas);
-      this.getXray();
-      this.hideBtn();
-    }
-
-  }
   }
 
   SelectBodyPart(bodyPartName: any) {
@@ -158,6 +155,4 @@ export class XrayComponent implements OnInit {
         break;
     }
   }
-
-
 }
