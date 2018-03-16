@@ -59,6 +59,7 @@ export class XrayComponent implements OnInit {
         (error: string) => {
           this.error = error;
           console.log('server err'); // need to full error handle
+          this.comingImage = 'assets/placeholderNoConnection.gif';
         });
   }
 
@@ -75,9 +76,17 @@ export class XrayComponent implements OnInit {
       .subscribe(
         // tslint:disable-next-line:no-shadowed-variable
         (res: Image) => {
+          if (res.errorMessage !== null){
+            this.comingImage = 'assets/placeholderBusy.gif';
+            console.log(res.errorMessage); }
+
           this.comingImage = `data:image/jpeg;base64,${res.base64}`;
-        }
-      );
+        },
+        (error: string) => {
+          this.error = error;
+          console.log('server err');
+          this.comingImage = 'assets/placeholderNoConnection.gif'; // need to full error handle
+        });
   }
 
   setCapturebtn() {

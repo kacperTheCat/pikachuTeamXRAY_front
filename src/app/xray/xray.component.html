@@ -4,7 +4,7 @@
       <mat-card-header>
         <h2 class="patient-name">Patient:
           <mat-form-field class="patient-name__input">
-            <input matInput [(ngModel)]="patientName" required>
+            <input tabindex="1" matInput [(ngModel)]="patientName" required>
           </mat-form-field>
         </h2>
       </mat-card-header>
@@ -12,8 +12,8 @@
         <img mat-card-image [src]='comingImage' alt="Photo of a random cat">
       </mat-card-content>
       <mat-card-actions class="control">
-        <button mat-raised-button class="control__btn" color="primary" (click)="getStream()">{{titleBtn}}</button>
-        <button mat-raised-button class="control__btn control__btn--warn" color="warn" type="submit" (click)="onSubmit()"
+        <button mat-raised-button class="control__btn" tabindex="2" color="primary" (click)="getStream()">{{titleBtn}}</button>
+        <button mat-raised-button class="control__btn control__btn--warn" tabindex="7" color="warn" type="submit" (click)="onSubmit()"
           [disabled]="!disableBtn">
           {{titleCptBtn}}
         </button>
@@ -24,24 +24,24 @@
 
       <mat-card-actions>
         <div class="parameter-name">
-          <mat-slider color="primary" id="light" [max]="255" [min]="-255" thumb-label="thumbLabel" [(ngModel)]="light" vertical="verical"></mat-slider>
+          <mat-slider tabindex="3" color="primary" id="light" [max]="255" [min]="-255" thumb-label="thumbLabel" [(ngModel)]="light" vertical="verical"></mat-slider>
           <label for="light">Light</label>
         </div>
         <div class="parameter-name">
-          <mat-slider color="primary" id="contrast" [max]="255" [min]="-255" thumb-label="thumbLabel" [(ngModel)]="contrast" vertical="verical"></mat-slider>
+          <mat-slider tabindex="4"  color="primary" id="contrast" [max]="255" [min]="-255" thumb-label="thumbLabel" [(ngModel)]="contrast" vertical="verical"></mat-slider>
           <label for="contrast">Contrast</label>
         </div>
       </mat-card-actions>
       <div class="content">
         <mat-form-field class="settings">
-          <mat-select placeholder="Settings">
+          <mat-select tabindex="5" placeholder="Settings">
             <mat-option (click)="SelectBodyPart(part)" *ngFor="let part of bodyParts" [value]="part">
               {{ part }}
             </mat-option>
           </mat-select>
         </mat-form-field>
         <div class="content__element-label">
-          <mat-checkbox class="negative-check" [(ngModel)]="negative">Negative</mat-checkbox>
+          <mat-checkbox tabindex="6" class="negative-check" [(ngModel)]="negative">Negative</mat-checkbox>
         </div>
 
       </div>

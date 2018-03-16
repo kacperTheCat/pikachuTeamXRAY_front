@@ -22,8 +22,8 @@ export class LogstoreComponent implements OnInit {
   imageDate: any;
   imageTime: any;
   machineID: any;
-  img: string; 
-  
+  img: string;
+
   constructor(private getLogData: GetDataService, public dialog: MatDialog) { }
 
 
@@ -31,10 +31,8 @@ export class LogstoreComponent implements OnInit {
     this.getLogData.getData(logsApi)
       .subscribe(
         (datas: any) => {
-          this.dataSource = new Mat
-          
-          
-          leDataSource(datas);
+          this.dataSource = new MatTableDataSource(datas);
+          console.log(datas);
         },
         (error: string) => {
           this.error = error;

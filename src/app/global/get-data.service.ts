@@ -6,6 +6,7 @@ import { map, catchError } from 'rxjs/operators';
 
 export interface Image {
   base64: string;
+  errorMessage: string;
 }
 export interface DeviceInfo {
   version: string;
