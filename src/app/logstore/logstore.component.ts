@@ -14,22 +14,27 @@ export class LogstoreComponent implements OnInit {
   dataSource: any = [];
   displayedColumns: any;
   error: any;
-  light: any;
-  contrast: any;
-  negative: any;
+  light: number;
+  contrast: number;
+  negative: boolean;
   patientName: string;
-  userName: any;
+  userName: string;
   imageDate: any;
   imageTime: any;
-  tab: any[];
-  img: string;
+  machineID: any;
+  img: string; 
+  
   constructor(private getLogData: GetDataService, public dialog: MatDialog) { }
+
 
   getDatas() {
     this.getLogData.getData(logsApi)
       .subscribe(
         (datas: any) => {
-          this.dataSource = new MatTableDataSource(datas);
+          this.dataSource = new Mat
+          
+          
+          leDataSource(datas);
         },
         (error: string) => {
           this.error = error;
@@ -76,6 +81,7 @@ export class LogstoreComponent implements OnInit {
   }
 }
 
+
 @Component({
   selector: 'app-photo-dialog.component',
   templateUrl: 'photo-dialog.component.html',
@@ -84,5 +90,4 @@ export class PhotoDialogComponent {
   img: string;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 }
-
 

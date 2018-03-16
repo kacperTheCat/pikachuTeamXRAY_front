@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { RTGMachines } from '../global/address';
+import { RTGMachines, SelectMachine } from '../global/address';
 import { environment } from '@env/environment';
 import { GetDataService } from '../global/get-data.service';
-import {MatTableDataSource} from '@angular/material';
+import { MatTableDataSource, MatSelect } from '@angular/material';
+import { NgModule } from '@angular/core';
 
 @Component({
   selector: 'app-reconfig',
@@ -11,10 +12,11 @@ import {MatTableDataSource} from '@angular/material';
 })
 export class ReconfigComponent implements OnInit {
 
-  version: string = environment.version;
-  dataSource: any= [];
+  dataSource: any = [];
   error: any;
-  displayedColumns: any;
+  titleSaveButton = "Save";
+  selectedValue: number;
+  machineIndex: object;
 
   constructor(private getMachine: GetDataService) { }
 
@@ -22,7 +24,8 @@ export class ReconfigComponent implements OnInit {
     this.getMachine.getData(RTGMachines)
       .subscribe(
         (datas: any) => {
-          this.dataSource = new MatTableDataSource(datas);
+
+          this.dataSource = datas;
         },
         (error: string) => {
           this.error = error;
@@ -32,10 +35,26 @@ export class ReconfigComponent implements OnInit {
 
   ngOnInit() {
     this.getMachines();
-    this.displayedColumns = ['machine'];
-   }
-}
+  }
 
-export interface MachinesID {
-  machine: any;
+  sendMachine() {
+    if (this.selectedValue === undefined) {
+      return false // need error handle 
+    }
+    this.machineIndex = { "chosenMachineID": this.selectedValue }
+    console.log(this.machineIndex);
+    const response = this.getMachine.postData(SelectMachine, this.machineIndex)
+    .subscribe(
+      (response) =>{
+        console.log(response);
+      }
+    )
+    ;
+  }
+
+  onSubmit() {
+    this.machineIndex = { "chosenMachineID": this.selectedValue }
+    this.sendMachine();
+  }
+
 }
