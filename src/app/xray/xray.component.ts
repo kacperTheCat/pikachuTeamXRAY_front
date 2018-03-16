@@ -18,7 +18,6 @@ import { imgAddress, xRayImage } from '../global/address';
 
 export class XrayComponent implements OnInit {
 
-
   constructor(private getData: GetDataService) { }
 
   comingImage: String = 'assets/placeholder.webp';
@@ -76,11 +75,12 @@ export class XrayComponent implements OnInit {
       .subscribe(
         // tslint:disable-next-line:no-shadowed-variable
         (res: Image) => {
-          if (res.errorMessage !== null){
-            this.comingImage = 'assets/placeholderBusy.gif';
-            console.log(res.errorMessage); }
-
-          this.comingImage = `data:image/jpeg;base64,${res.base64}`;
+          if (res.errorMessage !== null) {
+            console.log(res.errorMessage);
+            this.comingImage = 'assets/placeholderNoConnection.gif';
+          } else {
+            this.comingImage = `data:image/jpeg;base64,${res.base64}`;
+          }
         },
         (error: string) => {
           this.error = error;
@@ -134,8 +134,8 @@ export class XrayComponent implements OnInit {
       if (this.patientName === undefined || this.patientName === '') {
         return false;
       } else {
-        this.getXray();
         this.hideBtn();
+        this.getXray();
       }
     }
   }

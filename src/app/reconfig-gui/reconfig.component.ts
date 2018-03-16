@@ -14,9 +14,10 @@ export class ReconfigComponent implements OnInit {
 
   dataSource: any = [];
   error: any;
-  titleSaveButton = "Save";
+  titleSaveButton = 'Save';
   selectedValue: number;
   machineIndex: object;
+  connectionInfo: string;
 
   constructor(private getMachine: GetDataService) { }
 
@@ -24,7 +25,6 @@ export class ReconfigComponent implements OnInit {
     this.getMachine.getData(RTGMachines)
       .subscribe(
         (datas: any) => {
-
           this.dataSource = datas;
         },
         (error: string) => {
@@ -37,11 +37,12 @@ export class ReconfigComponent implements OnInit {
     this.getMachines();
   }
 
+
   sendMachine() {
     if (this.selectedValue === undefined) {
-      return false // need error handle 
+      this.connectionInfo = 'Select machine';
     }
-    this.machineIndex = { "chosenMachineID": this.selectedValue }
+    this.machineIndex = { 'chosenMachineID': this.selectedValue }
     console.log(this.machineIndex);
     const response = this.getMachine.postData(SelectMachine, this.machineIndex)
     .subscribe(
@@ -51,10 +52,10 @@ export class ReconfigComponent implements OnInit {
     )
     ;
   }
-
   onSubmit() {
-    this.machineIndex = { "chosenMachineID": this.selectedValue }
+    this.machineIndex = { 'chosenMachineID': this.selectedValue };
     this.sendMachine();
+    this.connectionInfo = `Connected with machine #${this.selectedValue}`;
   }
 
 }
