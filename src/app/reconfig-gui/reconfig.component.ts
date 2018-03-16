@@ -24,8 +24,8 @@ export class ReconfigComponent implements OnInit {
     this.getMachine.getData(RTGMachines)
       .subscribe(
         (datas: any) => {
+
           this.dataSource = datas;
-          console.log(this.dataSource)
         },
         (error: string) => {
           this.error = error;

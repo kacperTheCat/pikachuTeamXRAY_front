@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { GetDataService } from '../global/get-data.service';
-import { jsonUrl } from '../global/address';
-import { MatTableDataSource } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { GetDataService, Image } from '../global/get-data.service';
+import { logsApi } from '../global/address';
+import { MatTableDataSource, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-logstore',
@@ -22,15 +22,19 @@ export class LogstoreComponent implements OnInit {
   imageDate: any;
   imageTime: any;
   machineID: any;
+  img: string; 
+  
+  constructor(private getLogData: GetDataService, public dialog: MatDialog) { }
 
-  constructor(private getLogData: GetDataService) { }
 
   getDatas() {
-    this.getLogData.getData(jsonUrl)
+    this.getLogData.getData(logsApi)
       .subscribe(
         (datas: any) => {
-          this.dataSource = new MatTableDataSource(datas);
-          console.log(datas);
+          this.dataSource = new Mat
+          
+          
+          leDataSource(datas);
         },
         (error: string) => {
           this.error = error;
@@ -49,14 +53,41 @@ export class LogstoreComponent implements OnInit {
       'userName',
       'imageDate',
       'imageTime',
-      'machineID'
+      'xRayImageName'
     ];
   }
+
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    filterValue.trim(); // Remove whitespace
+    filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
+  }
+
+  openDialog(imgSrc: string) {
+    this.getLogData.getData(`${logsApi}/${imgSrc}`)
+      .subscribe(
+        (img: Image) => {
+          this.dialog.open(PhotoDialogComponent, {
+            data: {
+              img: `data:image/jpeg;base64,${img.base64}`
+            }
+          });
+
+        },
+        (error: string) => {
+          this.error = error;
+          console.log('server err'); // need to full error handle
+        });
   }
 }
 
+
+@Component({
+  selector: 'app-photo-dialog.component',
+  templateUrl: 'photo-dialog.component.html',
+})
+export class PhotoDialogComponent {
+  img: string;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+}
 
