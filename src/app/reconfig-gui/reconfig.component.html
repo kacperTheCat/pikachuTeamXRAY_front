@@ -12,9 +12,9 @@
         </mat-select>
       </mat-form-field>
     </form>
-    <p> Selected value: {{selectedValue | json}} </p>
+    <p> Selected value: {{selectedValue}} </p>
     <mat-card-actions class="control">
-      <button mat-raised-button color="warn" type="submit">{{titleSaveButton}}</button>
+      <button mat-raised-button color="warn" type="submit" (click)="onSubmit()">{{titleSaveButton}}</button>
     </mat-card-actions>
   </mat-card>
 </div>
