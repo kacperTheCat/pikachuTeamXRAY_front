@@ -5,8 +5,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '@app/material.module';
 
 import { LogstoreRoutingModule } from './logstore-routing.module';
-import { LogstoreComponent } from './logstore.component';
+import { LogstoreComponent, PhotoDialogComponent } from './logstore.component';
 import {MatTableModule} from '@angular/material/table';
+import { Component } from '@angular/core';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -14,10 +16,12 @@ import {MatTableModule} from '@angular/material/table';
     FlexLayoutModule,
     MaterialModule,
     LogstoreRoutingModule,
-    MatTableModule
+    MatTableModule,
+
   ],
   declarations: [
-    LogstoreComponent
-  ]
+     LogstoreComponent, PhotoDialogComponent
+  ],
+  entryComponents: [LogstoreComponent, PhotoDialogComponent ]
 })
 export class LogstoreModule { }

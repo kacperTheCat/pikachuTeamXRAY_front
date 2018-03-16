@@ -49,10 +49,13 @@
       </ng-container>
 
       <!-- Id machine Column -->
-      <ng-container matColumnDef="machineID">
-        <mat-header-cell *matHeaderCellDef> ID Machine </mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.machineID}} </mat-cell>
+      <ng-container matColumnDef="xRayImageName">
+        <mat-header-cell *matHeaderCellDef> Photos </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-button class="control__btn" color="primary" (click)="openDialog(element.xRayImageName)">Show</button> </mat-cell>
       </ng-container>
+
+
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
