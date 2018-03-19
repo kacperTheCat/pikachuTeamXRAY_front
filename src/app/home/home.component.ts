@@ -5,7 +5,6 @@ import { environment } from '@env/environment';
 import { GetDataService, DeviceInfo } from '../global/get-data.service';
 import { machineInfo } from '../global/address';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,12 +12,12 @@ import { machineInfo } from '../global/address';
 })
 export class HomeComponent implements OnInit {
 
-
   isLoading: Boolean;
   version = '';
   deviceName = '';
   ipAdress = '';
   visible = true;
+
   constructor(private getData: GetDataService) { }
 
   ngOnInit() {
