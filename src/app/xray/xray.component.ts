@@ -20,6 +20,7 @@ export class XrayComponent implements OnInit {
 
   constructor(private getData: GetDataService) { }
 
+
   comingImage: String = 'assets/placeholder.webp';
   titleBtn = 'Preview'; // it should be a static var
   titleCptBtn: any = 'Capture';
@@ -36,6 +37,9 @@ export class XrayComponent implements OnInit {
   userName = 'doctor'; // teporary
 
   ngOnInit() { }
+  ngOnDestroy() {
+    clearInterval(this.previevInterval);
+    }
 
   getStream() {
     if (this.titleBtn === 'Preview') {
@@ -50,7 +54,7 @@ export class XrayComponent implements OnInit {
   }
 
   getImage() {
-    this.getData.getData(imgAddress)
+  this.getData.getData(imgAddress)
       .subscribe(
         (img: Image) => {
           this.comingImage = `data:image/jpeg;base64,${img.base64}`;
@@ -67,6 +71,23 @@ export class XrayComponent implements OnInit {
     this.audio.src = 'assets/arc1.mp3';
     this.audio.load();
     this.audio.play();
+  }
+
+  hideBtn() {
+    if (this.disableBtn) {
+      this.disableBtn = false;
+      this.titleCptBtn = 10;
+      const inter = setInterval(() => {
+        this.titleCptBtn--;
+        if (this.titleCptBtn === 0) {
+          clearInterval(inter);
+        }
+      }, 1000);
+      setTimeout(() => {
+        this.disableBtn = true;
+        this.titleCptBtn = 'Capture';
+      }, 10000);
+    }
   }
 
   getXray() {
@@ -94,23 +115,6 @@ export class XrayComponent implements OnInit {
     this.titleBtn = 'Preview'; // it shoud hide preview btn?
   }
 
-  hideBtn() {
-    if (this.disableBtn) {
-      this.disableBtn = false;
-      this.titleCptBtn = 10;
-      const inter = setInterval(() => {
-        this.titleCptBtn--;
-        if (this.titleCptBtn === 0) {
-          clearInterval(inter);
-        }
-      }, 1000);
-      setTimeout(() => {
-        this.disableBtn = true;
-        this.titleCptBtn = 'Capture';
-      }, 10000);
-    }
-  }
-
   onSubmit() {
     if (this.disableBtn) {
       this.setCapturebtn();
@@ -132,7 +136,7 @@ export class XrayComponent implements OnInit {
       );
       // validation
       if (this.patientName === undefined || this.patientName === '') {
-        return false;
+        this.comingImage = 'assets/placeholderTypeName.gif';
       } else {
         this.hideBtn();
         this.getXray();
@@ -164,4 +168,6 @@ export class XrayComponent implements OnInit {
         break;
     }
   }
+
+
 }

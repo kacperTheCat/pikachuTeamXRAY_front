@@ -18,6 +18,7 @@ export class ReconfigComponent implements OnInit {
   selectedValue: number;
   machineIndex: object;
   connectionInfo: string;
+  responseInfo: any;
 
   constructor(private getMachine: GetDataService) { }
 
@@ -43,16 +44,16 @@ export class ReconfigComponent implements OnInit {
       this.connectionInfo = 'Select machine';
     }
     this.machineIndex = { 'chosenMachineID': this.selectedValue }
-    console.log(this.machineIndex);
     const response = this.getMachine.postData(SelectMachine, this.machineIndex)
     .subscribe(
-      (response) =>{
-        console.log(response);
+      (response) => {
+        // console.log(response);
+        this.responseInfo = response;
       }
     )
     ;
   }
-  onSubmit() {
+  submitMachine() {
     this.machineIndex = { 'chosenMachineID': this.selectedValue };
     this.sendMachine();
     this.connectionInfo = `Connected with machine #${this.selectedValue}`;

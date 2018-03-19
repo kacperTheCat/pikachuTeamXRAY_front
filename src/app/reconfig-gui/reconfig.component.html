@@ -13,8 +13,9 @@
       </mat-form-field>
     </form>
     <mat-card-actions class="control">
-      <button mat-raised-button color="warn" type="submit" (click)="onSubmit()">{{titleSaveButton}}</button>
+      <button mat-raised-button color="warn" type="submit" (click)="submitMachine()">{{titleSaveButton}}</button>
     </mat-card-actions>
+    <p> {{ responseInfo }}</p>
     <p>{{ connectionInfo }}</p>
   </mat-card>
 </div>

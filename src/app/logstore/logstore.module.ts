@@ -9,6 +9,8 @@ import { LogstoreComponent, PhotoDialogComponent } from './logstore.component';
 import {MatTableModule} from '@angular/material/table';
 import { Component } from '@angular/core';
 
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -16,8 +18,7 @@ import { Component } from '@angular/core';
     FlexLayoutModule,
     MaterialModule,
     LogstoreRoutingModule,
-    MatTableModule,
-
+    MatTableModule
   ],
   declarations: [
      LogstoreComponent, PhotoDialogComponent

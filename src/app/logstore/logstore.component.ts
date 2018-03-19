@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { GetDataService, Image } from '../global/get-data.service';
 import { logsApi } from '../global/address';
 import { MatTableDataSource, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { Data } from '@angular/router';
 
 @Component({
   selector: 'app-logstore',
@@ -10,7 +11,6 @@ import { MatTableDataSource, MatDialog, MAT_DIALOG_DATA } from '@angular/materia
 })
 
 export class LogstoreComponent implements OnInit {
-
   dataSource: any = [];
   displayedColumns: any;
   error: any;
@@ -19,11 +19,10 @@ export class LogstoreComponent implements OnInit {
   negative: boolean;
   patientName: string;
   userName: string;
-  imageDate: any;
-  imageTime: any;
-  machineID: any;
+  imageDate: Data;
+  imageTime: Data;
+  machineID: Data;
   img: string;
-
   constructor(private getLogData: GetDataService, public dialog: MatDialog) { }
 
 
@@ -32,7 +31,6 @@ export class LogstoreComponent implements OnInit {
       .subscribe(
         (datas: any) => {
           this.dataSource = new MatTableDataSource(datas);
-          console.log(datas);
         },
         (error: string) => {
           this.error = error;
@@ -42,8 +40,8 @@ export class LogstoreComponent implements OnInit {
 
   ngOnInit() {
     this.getDatas();
-
     this.displayedColumns = [
+      'No.',
       'light',
       'contrast',
       'negative',
@@ -53,6 +51,7 @@ export class LogstoreComponent implements OnInit {
       'imageTime',
       'xRayImageName'
     ];
+
   }
 
   applyFilter(filterValue: string) {
