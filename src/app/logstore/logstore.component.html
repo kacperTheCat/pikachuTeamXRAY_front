@@ -6,6 +6,12 @@
       </mat-form-field>
     </div>
     <mat-table #table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="No.">
+            <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+            <mat-cell *matCellDef="let element ">  {{id }} </mat-cell>
+          </ng-container>
+
       <!-- Light Column -->
       <ng-container matColumnDef="light">
         <mat-header-cell *matHeaderCellDef> Light </mat-header-cell>
@@ -60,5 +66,7 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
+
+
   </div>
 </div>

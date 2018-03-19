@@ -18,8 +18,8 @@ import { imgAddress, xRayImage } from '../global/address';
 
 export class XrayComponent implements OnInit {
 
-
   constructor(private getData: GetDataService) { }
+
 
   comingImage: String = 'assets/placeholder.webp';
   titleBtn = 'Preview'; // it should be a static var
@@ -37,6 +37,9 @@ export class XrayComponent implements OnInit {
   userName = 'doctor'; // teporary
 
   ngOnInit() { }
+  ngOnDestroy() {
+    clearInterval(this.previevInterval);
+    }
 
   getStream() {
     if (this.titleBtn === 'Preview') {
@@ -51,7 +54,7 @@ export class XrayComponent implements OnInit {
   }
 
   getImage() {
-    this.getData.getData(imgAddress)
+  this.getData.getData(imgAddress)
       .subscribe(
         (img: Image) => {
           this.comingImage = `data:image/jpeg;base64,${img.base64}`;
@@ -70,30 +73,6 @@ export class XrayComponent implements OnInit {
     this.audio.play();
   }
 
-  getXray() {
-    this.playXraySound();
-    const res = this.getData.postData(xRayImage, this.freshDatas)
-      .subscribe(
-        // tslint:disable-next-line:no-shadowed-variable
-        (res: Image) => {
-          if (res.errorMessage !== null){
-            this.comingImage = 'assets/placeholderBusy.gif';
-            console.log(res.errorMessage); }
-
-          this.comingImage = `data:image/jpeg;base64,${res.base64}`;
-        },
-        (error: string) => {
-          this.error = error;
-          console.log('server err');
-          this.comingImage = 'assets/placeholderNoConnection.gif'; // need to full error handle
-        });
-  }
-
-  setCapturebtn() {
-    clearInterval(this.previevInterval);
-    this.titleBtn = 'Preview'; // it shoud hide preview btn?
-  }
-
   hideBtn() {
     if (this.disableBtn) {
       this.disableBtn = false;
@@ -109,6 +88,31 @@ export class XrayComponent implements OnInit {
         this.titleCptBtn = 'Capture';
       }, 10000);
     }
+  }
+
+  getXray() {
+    this.playXraySound();
+    const res = this.getData.postData(xRayImage, this.freshDatas)
+      .subscribe(
+        // tslint:disable-next-line:no-shadowed-variable
+        (res: Image) => {
+          if (res.errorMessage !== null) {
+            console.log(res.errorMessage);
+            this.comingImage = 'assets/placeholderNoConnection.gif';
+          } else {
+            this.comingImage = `data:image/jpeg;base64,${res.base64}`;
+          }
+        },
+        (error: string) => {
+          this.error = error;
+          console.log('server err');
+          this.comingImage = 'assets/placeholderNoConnection.gif'; // need to full error handle
+        });
+  }
+
+  setCapturebtn() {
+    clearInterval(this.previevInterval);
+    this.titleBtn = 'Preview'; // it shoud hide preview btn?
   }
 
   onSubmit() {
@@ -132,10 +136,10 @@ export class XrayComponent implements OnInit {
       );
       // validation
       if (this.patientName === undefined || this.patientName === '') {
-        return false;
+        this.comingImage = 'assets/placeholderTypeName.gif';
       } else {
-        this.getXray();
         this.hideBtn();
+        this.getXray();
       }
     }
   }
@@ -164,4 +168,6 @@ export class XrayComponent implements OnInit {
         break;
     }
   }
+
+
 }
